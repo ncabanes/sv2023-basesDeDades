@@ -1,0 +1,12 @@
+SQLite version 3.43.1 2023-09-11 12:01:27
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> .open jocsProva
+sqlite> CREATE TABLE jocs
+   ...> (nom VARCHAR(50), plataforma VARCHAR(10), valoracion VARCHAR(3)
+(x1...> );
+sqlite> INSERT INTO jocs VALUES ('Minecraft', 'ps3', '70');
+sqlite> INSERT INTO jocs VALUES ('Fortnite', 'pc-epic', '80');
+sqlite> INSERT INTO jocs VALUES ('Crash Bandicoot', 'ps3', '85');
+sqlite>
