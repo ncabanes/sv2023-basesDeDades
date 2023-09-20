@@ -1,0 +1,1 @@
+ORDINADOR_CLÀSIC (marca, model, ram, anyLlançament)

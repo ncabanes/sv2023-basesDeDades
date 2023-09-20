@@ -1,0 +1,2 @@
+JOC(codi,nom,plataforma,valoració)
+CP: codi
