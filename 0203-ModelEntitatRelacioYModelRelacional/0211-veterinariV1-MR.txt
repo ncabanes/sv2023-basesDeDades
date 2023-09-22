@@ -1,0 +1,2 @@
+MASCOTA ( codiMascota, nomMascota, tipusAnimal, nomPropietari, cognomsPropietari, telefonPropietari)
+CP: codiMascota
