@@ -1,0 +1,2 @@
+REBUT(any, número, nom, data, import)
+CP:(any,número)
