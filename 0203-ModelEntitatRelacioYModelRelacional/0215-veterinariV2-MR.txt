@@ -1,0 +1,5 @@
+PROPIETARI(dni, nom, cognoms, telefon)
+CP: dni
+
+MASCOTA(codi, nom, tipus, dniPropietari)
+CP: codi
