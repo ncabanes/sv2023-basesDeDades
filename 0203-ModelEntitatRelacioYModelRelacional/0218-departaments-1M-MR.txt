@@ -1,0 +1,10 @@
+DEPARTAMENT(codi,nom)
+C.P.: codi
+
+CAP(num,dni,nom,cognoms,codi_departament)
+C.P.: num
+C.Alt.: dni
+
+EMPLEAT(num,dni,nom,cognoms,codi_departament)
+C.P.: num
+C.Alt.: dni

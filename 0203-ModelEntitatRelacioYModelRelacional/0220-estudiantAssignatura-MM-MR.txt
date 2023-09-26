@@ -1,0 +1,8 @@
+ESTUDIANT(id, nom)
+CP: id
+
+ASSIGNATURA(codi, nom, curs)
+CP: codi
+
+MATRICULA(id_estudiant, codi_asignatura)
+CP: (id_estudiant, codi_asignatura)
