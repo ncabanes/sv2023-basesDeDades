@@ -1,0 +1,6 @@
+EQUIP(codi, nom)
+PK: codi
+
+JUGADOR(codi, nom, codiEquip)
+PK: codi
+FK: codiEquip -> EQUIP

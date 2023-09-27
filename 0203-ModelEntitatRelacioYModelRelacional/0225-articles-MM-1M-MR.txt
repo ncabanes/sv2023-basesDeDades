@@ -1,0 +1,12 @@
+CATEGORIA (codi, nom)
+PK: codi
+
+ARTICLE (codi, nom, preuVenda, codiCategoria)
+PK: codi
+FK: codiCategoria
+
+PEÇA (codi, nom, preuCost)
+PK: codi
+
+FORMAT_PER: (codiArticle, codiPeça)
+PK: (codiArticle, codiPeça)
