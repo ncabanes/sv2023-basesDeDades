@@ -1,0 +1,14 @@
+EDITORIAL(codi,nom)
+PK: codi
+
+LLIBRE(isbn,titol,codiEditorial)
+PK: isbn
+FK: codiEditorial -> EDITORIAL
+
+AUTOR(dni,nom)
+PK: dni
+
+POT_PARTICIPAR(dniAutor,isbnLlibre)
+PK: dniAutor,isbnLlibre
+FK: dniAutor -> AUTOR
+FK: isbnLlibre -> LLIBRE
