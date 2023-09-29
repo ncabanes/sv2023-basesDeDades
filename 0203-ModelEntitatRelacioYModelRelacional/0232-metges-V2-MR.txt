@@ -1,0 +1,15 @@
+ESPECIALITAT(codi, descripció)
+CP: codi
+
+METGE(numCol, nom, codiEspec)
+CP: numCol
+C.Al.: codiEspec -> ESPECIALITAT
+VNN: codiEspec
+
+PACIENT(dni, nom)
+CP: dni
+
+METGE_ATEN_PACIENT(numColMetge, dniPacient, data, motiu, diagnòstic)
+CP: (numColMetge, dniPacient,   data, motiu)
+C.Al.: numColMetge -> METGE
+C.Al.: dniPacient -> PACIENT
