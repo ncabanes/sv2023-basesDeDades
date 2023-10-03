@@ -1,0 +1,6 @@
+PAIS(nom)
+CP: nom
+
+CIUTAT(nomPais, nomCiutat)
+CP: (nomPais, nomCiutat)
+C.Aj.: nomPais -> PAIS
