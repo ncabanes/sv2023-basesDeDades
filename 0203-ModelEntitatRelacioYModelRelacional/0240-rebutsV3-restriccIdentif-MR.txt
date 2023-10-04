@@ -1,0 +1,6 @@
+CAPÇALERA(numeroRebut, data_i_hora)
+CP:numeroRebut
+
+LINIA(numeroRebut, numeroLínia, descripcio, quantitat, preu)
+CP: (numeroRebut, numeroLínia)
+C.Al.:numeroRebut -> CAPÇALERA
