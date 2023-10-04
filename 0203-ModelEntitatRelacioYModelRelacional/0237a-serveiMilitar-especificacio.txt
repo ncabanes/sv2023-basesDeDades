@@ -1,0 +1,20 @@
+(UChile)
+Asignatura CC42A – BASES DE DATOS, año 2004
+
+Problema 4: Servicio Militar
+
+¡Hay que hacer más expedito el proceso de reclutamiento! Por ello se le ha contratado para servir a la patria y bla-bla… bases de datos. Los datos significativos a tener en cuenta son:
+
+Un soldado se define por su código de soldado (único), su nombre y apellidos, y su graduación.
+
+Existen varios cuarteles, cada uno se define por su código de cuartel, nombre y ubicación.
+
+Hay que tener en cuenta que existen diferentes Cuerpos del Ejército (Infantería, Artillería,...), y cada uno se define por un código de Cuerpo y denominación.
+
+Los soldados están agrupados en compañías, siendo significativa para cada una de éstas, el número de compañía y la actividad principal que realiza.
+
+Se desea controlar los servicios que realizan los soldados (guardias, imaginarias, cuarteleros,...), y se definen por el código de servicio y descripción.
+
+Consideraciones de diseño:
+
+Un soldado pertenece a un único cuerpo y a una única compañía, durante todo el servicio militar. A una compañía pueden pertenecer soldados de diferentes cuerpos, no habiendo relación directa entre compañías y cuerpos. Los soldados de una misma compañía pueden estar destinados en diferentes cuarteles, es decir, una compañía puede estar ubicada en varios cuarteles, y en un cuartel puede haber varias compañías. Eso si, un soldado sólo esta en un cuartel. Además, un soldado realiza varios servicios a lo largo de la mili. Un mismo servicio puede ser realizado por más de un soldado (con independencia de la compañía), siendo significativa la fecha de realización.

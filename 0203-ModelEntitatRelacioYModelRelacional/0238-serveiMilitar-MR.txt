@@ -1,0 +1,23 @@
+COMPANYIA(número, activitatPrincipal)
+CP: número
+
+CUARTEL(codi, nom, ubicació)
+CP: codi
+
+COS(codi, denominació)
+CP: codi
+
+SOLDAT(codi, nomcognoms, graduació, 
+	númeroCompanyia, codiCuartel, codiCos)
+PK: codi
+FK_1: númeroCompanyia -> COMPANYIA (VNN)
+FK_2: codiCuartel -> CUARTEL (VNN)
+FK_3: codiCos -> COS (VNN)
+
+SERVEI(codi, descripció)
+PK: codi
+
+SERVEIX_EN(codiSoldat, codiServei, dataRealització)
+PK: codiSoldat, codiServei, dataRealització
+FK_1: codiSoldat -> SOLDAT
+FK_2: codiServei -> SERVEI
