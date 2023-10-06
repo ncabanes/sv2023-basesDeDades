@@ -1,0 +1,11 @@
+GERENT(dni, nom)
+C.P.: dni
+
+EMPRESA(nif, nom)
+C.P.: nif
+
+GESTIONA(dniGerent, nifEmpresa)
+C.P.: dniGerent
+C.Alt.: nifEmpresa
+C.Ext.: dniGerent -> GERENT
+C.Ext.: nifEmpresa -> EMPRESA
