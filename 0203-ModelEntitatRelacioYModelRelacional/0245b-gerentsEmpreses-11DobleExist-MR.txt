@@ -1,0 +1,3 @@
+PERTENEIX(dni,nom,nif,denominacio)
+PK:dni
+UK:nif
