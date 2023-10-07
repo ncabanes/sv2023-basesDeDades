@@ -1,0 +1,8 @@
+GERENT(dni, nom)
+PK: dni
+
+EMPRESA(nif, denominación, dniGerent)
+PK: nif
+UK: dniGerent
+FK: dniGerent -> GERENT
+VNN: dniGerent
