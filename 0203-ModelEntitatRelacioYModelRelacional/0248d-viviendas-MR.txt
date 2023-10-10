@@ -1,0 +1,16 @@
+MUNICIPI(nom)
+PK:nom
+
+VIVIENDA(num_cadastre,carrer)
+PK:num_cadastre
+
+PERSONA(dni,nom,cadastreViviendaHabita,nomMunicipiResideix,dniCapFamilia)
+PK:dni
+C.Aj:cadastreViviendaHabita->Vivienda
+C.Aj:nomMunicipiResideix->Municipi
+C.Aj:dniCapFamilia->PERSONA
+
+SER_PROPIETARI(cadastreVivienda,dniPersona)
+PK:(cadastreVivienda,dniPersona)
+C.Aj:cadastreVivienda->VIVIENDA
+C.Aj:dniPersona->PERSONA
