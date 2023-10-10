@@ -1,0 +1,7 @@
+PEÇA (codi, nom)
+CP: codi
+
+FORMADA_PER (codi_contenidor, codi_contingut)
+CP: (codi_contenidor, codi_contingut)
+C.AJ: codi_contenidor -> PEÇA
+C.AJ: codi_contingut -> PEÇA
