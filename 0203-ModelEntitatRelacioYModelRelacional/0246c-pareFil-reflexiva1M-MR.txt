@@ -1,0 +1,5 @@
+MODEL RELACIONAL PARE FILL
+
+PERSONA(dni,nom,dni_pare)
+CP: dni
+CAj: dni_pare -> PERSONA
