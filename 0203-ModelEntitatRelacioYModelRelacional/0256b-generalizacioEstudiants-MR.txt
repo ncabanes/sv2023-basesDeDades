@@ -1,0 +1,10 @@
+ESTUDIANT(dni, nom, adreça,telèfon,dataNaix)
+CP:dni
+
+INFORMÀTICA(dniEstudiant, altresconeix)
+CP: dniEstudiant
+CF: dniEstudiant --> ESTUDIANT(dni)
+
+ADMINISTRACIÓ(dniEstudiant, ppm)
+CP: dniEstudiant
+CF: dniEstudiant --> ESTUDIANT(dni)
