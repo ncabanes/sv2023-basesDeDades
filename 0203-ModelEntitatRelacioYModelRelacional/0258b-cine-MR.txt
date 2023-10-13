@@ -1,0 +1,33 @@
+PERSONA(dni,nom,dataNaix,llocNaix,biografia)
+CP:dni
+
+ACTOR(dniActor)
+CP: dniActor
+CF: dniActor --> PERSONA(dni)
+
+DIRECTOR(dniPersona)
+CP:dniDirector
+CF:dniDirector --> PERSONA(dni)
+
+PEL·LÍCULA(codi,títol,any,duracióMin,valoració,dniDirector)
+CP:codi
+VNN: dniDirector
+CF:dniDirector --> DIRECTOR(dniDirector)
+
+DIRIGEIX(dniDirector, codiPelicula)
+CP: (dniDirector, codiPelicula)
+CF: dniDirector --> DIRECTOR(dniDirector)
+CF: codiPelicula --> PEL·LÍCULA(codi)
+
+ACTUA(dniActor,codiPelicula,personatge)
+CP: (dniActor,codiPelicula,personatge)
+CF: dniActor --> ACTOR(dniActor)
+CF: codiPelicula --> PEL·LÍCULA(codi)
+
+CATEGORIA(tipus)
+CP: tipus
+
+ESTÀ_INCLOSA(codiPelicula,tipusCategoria)
+CP: (codiPelicula,tipusCategoria)
+CF: codiPelicula --> PEL·LÍCULA(codi)
+CF: tipusCategoria --> CATEGORIA(tipus)
