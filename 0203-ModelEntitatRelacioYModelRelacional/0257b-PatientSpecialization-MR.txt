@@ -1,0 +1,21 @@
+
+PHYSICIAN(id)
+PK: id
+
+PATIENT(id, name, admitDate, idPhysician)
+PK: id
+NN: idPhysician
+FK: idPhysician -> PHYSICIAN
+
+OUT_PATIENT(id, checkbackDate)
+PK: id
+FK: id -> PATIENT
+
+BED(id)
+PK: id
+
+RESIDENT_PATIENT(id, dateDischarged, idBed)
+PK: id
+UK: idBed
+FK: id -> PATIENT
+FK: idBed -> BED
