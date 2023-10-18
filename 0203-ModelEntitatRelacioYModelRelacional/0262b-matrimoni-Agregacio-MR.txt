@@ -1,0 +1,30 @@
+-- Primer pas (home + dona) --
+
+HOME(dni, nom)
+PK: dni
+
+DONA(dni, nom)
+PK: dni
+
+ES_CASA_AMB(dniHome, dniDona, dataBoda)
+PK: (dniHome, dniDona, dataBoda)
+FK: dniHome -> HOME(dni)
+FK: dniDona -> DONA(dni)
+
+
+-- Segon pas (jutjat + agregació home-dona) --
+
+HOME(dni, nom)
+PK: dni
+
+DONA(dni, nom)
+PK: dni
+
+JUTJAT(codi, denominació)
+PK: codi
+
+ES_CASA_EN(dniHome, dniDona, dataBoda, codiJutjat)
+PK: (dniHome, dniDona, dataBoda)
+FK: dniHome -> HOME(dni)
+FK: dniDona -> DONA(dni)
+FK: codiJutjat -> JUTJAT(codi)
