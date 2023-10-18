@@ -1,0 +1,33 @@
+En un restaurant, volem portar control de les taules, serveis i cambrers.
+
+D'una banda, cada taula té associat un número, una capacitat i una valoració. 
+
+Direm "servei" a cada ocasió en la qual un o diversos clients entren al restaurant, i ocupen una o fins i tot diverses taules (però almenys una). Per descomptat, cada taula pot emprar-se en diversos serveis diferents al llarg del dia. Cada servei tindrà un identificador (un número correlatiu), una data i hora de començament i una data i hora de final.
+
+De cada cambrer ens interessa emmagatzemar un "id", el seu nom, els seus cognoms, el seu salari per hores i la seua especialitat.
+
+A cada cambrer se li assigna un "servei" en un moment donat (des d'una certa data i hora fins una altra una certa data i hora), i voldrem anotar quines propines ha rebut d'eixe "servei". Per descomptat, cada cambrer podrà atendre diversos "serveis", però a més un mateix servei pot ser atés per més d'un cambrer.
+
+A més, volem portar control dels encarregats. De cada encarregat ens interessa el seu "id", el seu nom, els seus cognoms i el seu salari mensual.
+
+Existeix una relació entre encarregats i cambrers: cada cambrer és supervisat per un encarregat (i només 1), i cada encarregat pot supervisar a diversos cambrers (però potser a cap).
+
+A més, cada encarregat pot gestionar un o diversos serveis (potser cap, i és possible que un servei no necessite l'atenció de cap empleat, o d'un).
+
+---
+
+En un restaurante, queremos llevar control de las mesas, servicios y camareros.
+
+Por una parte, cada mesa tiene asociado un número, una capacidad y una valoración. 
+
+Llamaremos "servicio" a cada ocasión en la que uno o varios clientes entran al restaurante, y ocupan una o incluso varias mesas (pero al menos una). Por supuesto, cada mesa puede emplearse en varios servicios distintos a lo largo del día. Cada servicio tendrá un identificador (un número correlativo), una fecha y hora de comienzo y una fecha y hora de final.
+
+De cada camarero nos interesa almacenar un id, su nombre, sus apellidos, su salario por horas y su especialidad.
+
+A cada camarero se le asigna un "servicio" en un momento dado (desde una cierta fecha y hora hasta otra cierta fecha y hora), y querremos anotar qué propinas ha recibido de ese "servicio". Por supuesto, cada camarero podrá atender a varios "servicios", pero además un mismo servicio puede ser atendido por más de un camarero.
+
+Además, queremos llevar control de los encargados. De cada encargado nos interesa su id, su nombre, sus apellidos y su salario mensual.
+
+Existe una relación entre encargados y camareros: cada camarero es supervisado por un encargado (y sólo 1), y cada encargado puede supervisar a varios camareros (pero quizá a ninguno).
+
+Además, cada encargado puede gestionar uno o varios servicios (quizá ninguno, y es posible que un servicio no necesite la atención de ningún empleado, o de uno).
