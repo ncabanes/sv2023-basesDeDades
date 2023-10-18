@@ -1,0 +1,11 @@
+Cada profesor pertenece a un solo departamento y debe pertenecer a uno.
+
+El profesor puede impartir varios grupos de la misma o distinta asignatura, y un grupo debe ser ensenado por un profesor.
+
+Los alumnos se matriculan de varias asignaturas (al menos una) cada curso académico pero han de hacerlo en un grupo. A su vez un grupo tendrá varios alumnos matriculados. Cada grupo tendrá asignado un aula para cada día y hora de la semana.
+
+La matricula dará opción a dos convocatorias de examen con su respectiva calificación.
+
+Todo departamento debe tener un director, que es profesor.
+
+Los atributos de cada entidad son los que cabria esperar.
