@@ -1,0 +1,25 @@
+DEPARTAMENT(id, descripcio)
+PK: id
+
+EMPLEAT(id, nom, especialitat, idDepartament, dataComençament)
+PK: id
+FK: idDepartament -> DEPARTAMENT(id)
+
+FAMILIAR(dni, nom, relacio, naixement, idEmpleat)
+PK: dni
+FK: idEmpleat -> EMPLEAT(id) VNN
+
+PROJECTE(codi, denominacio, detalls, idDepartament)
+PK: codi
+FK: idDepartament -> DEPARTAMENT
+
+DIRIGEIX(idEmpleat, idDepartament, dataCarrec)
+PK: idEmpleat
+UK: idDepartament
+FK: idEmpleat -> EMPLEAT(id)
+FK: idDepartament -> DEPARTAMENT(id)
+
+TREBALLA_EN(idEmpleat, codiProjecte)
+PK: (idEmpleat, codiProjecte)
+FK: idEmpleat -> EMPLEAT(id)
+FK: codiProjecte -> PROJECTE(codi)
