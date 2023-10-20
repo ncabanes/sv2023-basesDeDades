@@ -9,10 +9,8 @@ DIRECTOR(dniPersona)
 CP:dniDirector
 CF:dniDirector --> PERSONA(dni)
 
-PEL·LÍCULA(codi,títol,any,duracióMin,valoració,dniDirector)
+PEL·LÍCULA(codi,títol,any,duracióMin,valoració)
 CP:codi
-VNN: dniDirector
-CF:dniDirector --> DIRECTOR(dniDirector)
 
 DIRIGEIX(dniDirector, codiPelicula)
 CP: (dniDirector, codiPelicula)
