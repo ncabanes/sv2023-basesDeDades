@@ -1,0 +1,21 @@
+Campeonato de Ajedrez
+
+El club de Ajedrez de Villatortas de Arriba, ha sido encargado de la organización de los próximos campeonatos mundiales que se celebrarán en la mencionada localidad. Por este motivo, desea llevar una base de datos toda la gestión relativa a participantes, alojamientos y partidas. Teniendo en cuenta que:
+
+En el campeonato participan jugadores y árbitros: de ambos se requiere conocer el número de asociado, nombre, dirección, teléfono de contacto y campeonatos en los que han participado (como jugador o como árbitro). De los jugadores se precisa además el nivel de juego en una escala de 1 a 10.
+
+Ningún árbitro puede participar como jugador.
+
+Los países envían al campeonato un conjunto de jugadores y árbitros, aunque no todos los países envían participantes. Todo jugador y árbitro es enviado por un único país. Un país puede ser representado por otro país.
+
+Cada país se identifica por un número correlativo según su orden alfabético e interesa conocer además de su nombre, el número de clubes de ajedrez existente en el mismo.
+
+Cada partida se identifica por un número correlativo (Cod P), la juegan dos jugadores y la arbitra un árbitro. Interesa registrar las partidas que juegan cada jugador y el color (blancas o negras) con el que se juega. Ha de tenerse en cuanta que un árbitro no puede arbitrar a jugadores enviados por el mismo país que le ha enviado a él.
+
+Todo participante participa en al menos una partida. Tanto jugadores como árbitros se alojan en uno de los hoteles en lo que se desarrollan las partidas, se desea conocer en qué hotel y en que fechas se ha alojado cada uno de los participantes. Los participantes pueden no permanecer en Villatortas durante todo el campeonato, sino acudir cuando tienen que jugar alguna partida alojándose en el mismo o distinto hotel. De cada hotel, se desea conocer el nombre, la dirección y el número de teléfono. El campeonato se desarrolla a lo largo de una serie de jornadas (año, mes, día) y cada partida tiene lugar en una de las jornadas aunque no tengas lugar partidas todas las jornadas.
+
+Cada partida se celebra en una de las salas de las que pueden disponer los hoteles, se desea conocer el número de entradas vendidas en la sala para cada partida. De cada sala, se desea conocer la capacidad y medios de que dispone (radio, televisión, vídeo,...) para facilitar la retransmisión de los encuentros. Una sala puede disponer de varios medios distintos.
+
+De cada partida se pretende registrar todos los movimientos que la componen, la identificación de movimiento se establece en base a un número de orden dentro de cada partida: para cada movimiento se guardan la jugada (5 posiciones) y un breve comentario realizado por un experto.
+
+(I.E.S. Mare Nostrum - Alicante)
