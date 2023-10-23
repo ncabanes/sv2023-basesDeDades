@@ -1,0 +1,7 @@
+
+FACTURA(número, data, nomComprador)
+PK: número
+
+LÍNIA(numFactura, numLinia, concepte, quantitat, preu)
+C.P.: (numFactura, numLinia)
+C.F.: numFactura -> FACTURA

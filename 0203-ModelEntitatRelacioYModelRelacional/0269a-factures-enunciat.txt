@@ -1,0 +1,5 @@
+Ens han demanat crear un sistema bàsic de facturació. Per a cada factura volem anotar el número (correlatiu), la data i el nom del comprador. Una factura estarà formada per una o diverses línies, numerades d'1 a N, en les quals s'anotarà el concepte, la quantitat i el preu. L'import total de cada línia i el de la factura no s'anoten, sinó que es calculen en temps real.
+
+---
+
+Nos han pedido crear un sistema  básico de facturación. Para cada factura queremos anotar el número (correlativo), la fecha y el nombre del comprador. Una factura estará formada por una o varias líneas, numeradas de 1 a N, en las que se anotará el concepto, la cantidad y el precio. El importe total de cada línea y el de la factura no se anotan, sino que se calculan en tiempo real.
