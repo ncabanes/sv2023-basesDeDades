@@ -1,0 +1,22 @@
+PRODUCTE(codi, nom, preu, IVA)
+PK: codi
+
+PROVEIDOR(codi, nom, telefon, direccio)
+PK: codi
+
+COMANDA(numero, data, codiProveidor)
+PK: numero
+FK: codiProveidor -> PROVEIDOR(codi)
+VNN: codiProveidor
+
+LINIA_COMANDA(numComanda, numLinia, quantitat, preu, IVA, descompte, codi_producte)
+PK: (numComanda, numLinia)
+FK: numComanda -> COMANDA(numero)
+FK: codi_producte -> PRODUCTE(codi)
+
+PAGAMENT(codi, tipus, quantitat, periode, numeroComanda)
+PK: codi
+FK: numeroComanda -> COMANDA(numero) (VNN)
+
+
+
