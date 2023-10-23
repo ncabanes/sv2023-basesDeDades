@@ -1,0 +1,18 @@
+Una empresa està interessada a automatitzar el seu procés de compres, el flux de funcionament de les quals és:
+Requereix registrar la fulla de la comanda que realitza a un determinat proveïdor en una determinada data
+En la fulla de la comanda queda constància del nombre d'unitats que compra de cada article i el preu de compra, i en cas que el proveïdor o bé per volum o per promoció, li realitza un descompte, també l'anota
+Els productes que compren tenen diferent IVA
+Generalment, paga als seus proveïdors al mes de rebre la mercaderia i per transferència, encara que el pot fer a terminis
+Els atributs de cada entitat són els que caldria esperar
+
+---
+
+Una empresa está interesada en automatizar su proceso de compras cuyo flujo de funcionamiento es:
+
+Requiere registrar la hoja del pedido que realiza a un determinado proveedor en una determinada fecha
+En la hoja del pedido queda constancia del número de unidades que compra de cada artículo y el precio de compra, y en caso de que el proveedor o bien por volumen o por promoción, le realiza un descuento, también lo anota
+Los productos que compran tienen distinto IVA
+Generalmente, paga a sus proveedores al mes de recibir la mercancía y por transferencia, aunque lo puede hacer a plazos
+Los atributos de cada entidad son los que cabría esperar
+
+(U.Cantabria)
