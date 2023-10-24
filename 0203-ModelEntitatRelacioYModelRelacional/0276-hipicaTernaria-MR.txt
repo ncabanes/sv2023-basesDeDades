@@ -1,0 +1,23 @@
+ALUMNE(dni,nom)
+CP: dni
+
+MONITOR(dni,nom)
+CP: dni
+
+CAVALL(codi,nom)
+CP: codi
+
+CAVALL_PROPI(codiCavall,dniAlumne)
+CP: codiCavall
+CF: codiCavall --> CAVALL(codi)
+CF: dniAlumne --> ALUMNE(dni)
+
+CAVALL_PRESTAT(codiCavall)
+CP: codiCavall
+CF: codiCavall --> CAVALL(codi)
+
+UTILITZA(dniAlumne,dniMonitor,codiCavall,dataSesió,hora)
+CP: (dniAlumne,dniMonitor,codiCavall,dataSesió,hora)
+CF: dniAlumne --> ALUMNE(dni)
+CF: dniMonitor --> MONITOR(dni)
+CF: codiCavall --> CAVALL(codi)
