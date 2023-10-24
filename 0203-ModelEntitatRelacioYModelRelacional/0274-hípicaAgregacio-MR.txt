@@ -1,0 +1,14 @@
+PERSONA(dni, nom)
+ PK:dni
+
+CAVALL(codi, nom)
+ PK:codi
+
+MONITOR(dni, nom)
+ PK:dni)
+
+UTILITZA(dniPersona, codiCavall, data, hora, dniMonitor)
+ PK:dniPersona, codiCavall, data, hora
+ FK:dniPersona -> PERSONA
+ FK:codiCavall -> CAVALL
+ FK:dniMonitor -> MONITOR
