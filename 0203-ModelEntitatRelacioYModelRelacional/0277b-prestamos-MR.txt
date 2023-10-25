@@ -1,0 +1,36 @@
+BANCO(id,nombre)
+CP: id
+
+SUCURSAL(id,nombre,idBanco)
+CP: id
+CAj: idBanco -> BANCO
+
+PRESTAMO(id,nombre)
+CP: id
+
+CLIENTE(id,nombre)
+CP: id
+
+CONCEDER_PRESTAMO(idSucursal,idCliente,idPrestamo)
+CP: (idCliente,idPrestamo)
+VNN: idSucursal
+CAj: idSucursal -> SUCURSAL
+CAj: idCuenta -> CUENTA
+CAj: idPrestamo -> PRESTAMO
+
+CUENTA(id,nombre)
+CP: id
+
+PRIVILEGIO(id,nombre)
+CP: id
+
+TIENE_PRIVILEGIOS(idCliente,idCuenta,idPrivilegio)
+CP: (idCliente,idCuenta,idPrivilegio)
+CAj: idCliente -> CLIENTE
+CAj: idCuenta -> CUENTA
+CAj: idPrivilegio -> PRIVILEGIO
+
+DOMICILIACION(id,nombre,idCuenta)
+CP: id
+VNN: idCuenta
+CAj: idCuenta -> CUENTA
