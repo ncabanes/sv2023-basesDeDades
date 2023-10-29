@@ -1,0 +1,3 @@
+Volem portar el control d'una sèrie d'articles que tenim en el magatzem de la nostra empresa, i de les peces (o components) que són necessàries per a crear cada article, tenint en compte que un article en general estarà format per diverses peces i que una peça es pot usar en més d'un article.
+
+A més, cada article pertany a una certa categoria (en una categoria pot haver-hi més d'un article).

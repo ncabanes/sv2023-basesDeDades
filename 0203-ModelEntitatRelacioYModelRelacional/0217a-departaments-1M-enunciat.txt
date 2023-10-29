@@ -1,0 +1,1 @@
+En una empresa, els empleats estan agrupats en departaments (cada empleat només pot pertànyer a un departament). Cada departament té un cap (però una persona pot coordinar més d'un departament alhora). Tria els atributs que consideres adequats.

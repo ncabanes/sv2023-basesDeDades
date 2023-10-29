@@ -1,0 +1,1 @@
+Un veterinari ens ha demanat automatitzar la informació que maneja. En aquesta segona aproximació, crearem dues taules, amb informació com: el nom de cada propietari, els seus cognoms, el seu telèfon, el nom de la seua mascota i el tipus d'animal de què es tracta. Crea el diagrama EER per a aqueixes taules, triant les claus primàries que consideres adequades.

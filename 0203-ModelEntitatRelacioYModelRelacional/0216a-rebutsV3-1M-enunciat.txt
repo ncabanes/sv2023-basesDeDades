@@ -1,0 +1,1 @@
+Crea una nova versió del diagrama EER per als "rebuts", incloent-hi una relació 1:M amb els clients.
