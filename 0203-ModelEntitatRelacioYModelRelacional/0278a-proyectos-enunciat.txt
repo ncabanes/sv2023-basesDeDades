@@ -1,0 +1,15 @@
+– En un proyecto pueden trabajar muchos empleados y un empleado puede estar ocupado en más de un proyecto.
+
+– Sin embargo, en una localidad, el empleado sólo puede tener asignado un proyecto.
+
+– Para cada localidad estamos interesados en el número de habitantes y la provincia a la que pertenece.
+
+– Cada empleado puede tener varias habilidades, pero para un determinado proyecto sólo puede usar una serie de ellas.
+
+– Un empleado usa cada habilidad que posee en al menos un proyecto.
+
+– Cada habilidad tiene un número asociado y necesitamos una breve descripción de ella.
+
+– Por último, para cada proyecto necesitamos el coste estimado
+
+(UCLM)

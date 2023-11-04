@@ -1,0 +1,27 @@
+Queremos construir una base de datos para una empresa de proyectos de ingeniería. Se necesita guardar información sobre todos los empleados, sus habilidades, proyectos asignados y departamentos que trabajan en ellos. 
+
+Para ello se dispone de la siguiente información:
+
+– Cada empleado tiene asignado un número único. Se necesita su nombre y fecha_de_nacimiento.
+
+– Solamente si un empleado está casado con otro se necesita almacenar la fecha de la boda y con quién está casado (en caso de que el cónyuge sea de la empresa).
+
+– Cada empleado tiene un título (ingeniero, secretario, conserje,..).
+
+– De los ingenieros necesitamos conocer su especialidad (eléctrico, mecánico, etc.)
+
+- y de los secretarios el número de pulsaciones.
+
+– Un empleado realiza sólo un tipo de trabajo en un momento dado, por lo que sólo necesitamos información del trabajo que realiza en la actualidad.
+
+– Los departamentos en que se divide la empresa tienen un nombre único. Necesitamos conocer su número de teléfono.
+
+– Un empleado pertenece a un solo departamento.
+
+– Para equiparse, cada departamento trata con muchos proveedores y un proveedor puede tratar con más de un departamento.
+
+– De los proveedores se necesita conocer su dirección y la fecha del último encuentro con cada uno de los departamentos con los que trata.
+
+
+
+(UCLM)
