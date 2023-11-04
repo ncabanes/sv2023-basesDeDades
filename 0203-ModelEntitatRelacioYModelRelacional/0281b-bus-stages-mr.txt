@@ -1,0 +1,36 @@
+BUS(reg_no, make, size, deck, no_pass)
+PK: reg_no
+
+GARAGE(name, address, bus_reg_no)
+PK: name
+FK: bus_reg_no -> BUS
+
+ROUTE(route_no, avg_pass)
+PK: route_no
+
+SERVICED_BY(route_no, bus_reg_no)
+PK: (route_no, bus_reg_no)
+FK: route_no -> ROUTE
+FK: bus_reg_no -> BUS
+
+STAGE(stage_no, route_no)
+PK: stage_no
+FK: route_no -> ROUTE
+
+DRIVER (emp_no, name, tel_no, address, stage_allocated_no)
+PK: emp_no
+FK: stage_allocated_no -> STAGE
+
+TOWN(name)
+FK: name
+
+PASS_TROUGH(stage_no, town_name)
+PK: (stage_no, town_name)
+FK: stage_no -> STAGE
+FK: town_name -> TOWN
+
+LOCATED_IN(garage_name, town_name)
+PK: garage_name
+UK: town_name
+FK: garage_name -> GARAGE
+FK: town_name -> TOWN
