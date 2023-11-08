@@ -1,0 +1,42 @@
+HOTEL(código, nombre)
+C.P.: código
+
+SALA(código, nombre, códigoHotel)
+C.P.: código
+VNN: códigoHotel
+C.Aj.: códigoHotel -> HOTEL
+
+PAIS(código, nombre, códigoPaisRepresentante)
+C.P.: código
+C.Aj.: códigoPaisRepresentante -> PAIS
+
+PARTICIPANTE(código, nombre, códigoPaisEnvía)
+C.P.: código
+C.Aj.: códigoPaisEnvía -> PAIS
+
+ALOJA(códigoParticipante, códigoHotel, F_ent, F_sal)
+C.P.: códigoParticipante, códigoHotel
+C.Alt: códigoParticipante -> PARTICIPANTE
+C.Alt: códigoHotel -> HOTEL 
+
+JUGADOR(códigoParticipante, color)
+C.P.: códigoParticipante
+C.Aj.: códigoParticipante -> PARTICIPANTE
+
+ARBITRO(códigoParticipante)
+C.P.: códigoParticipante
+C.Aj.: códigoParticipante -> PARTICIPANTE
+
+PARTIDA(código, códigoSala, códigoÁrbitro)
+C.P.: código
+C.Aj.: códigoÁrbitro -> ÁRBITRO
+C.Aj.: códigoSala -> SALA
+
+JUEGA(códigoParticipante, códigoPartida)
+C.P.: códigoPartida, códigoParticipante
+C.Aj.: códigoPartida -> PARTIDA
+C.Aj. códigoJugador -> JUGADOR
+
+MOVIMIENTO(códigoPartida, númeroMovimiento, detalles)
+C.P.: códigoPartida, númeroMovimiento
+C.Aj.: códigoPartida -> PARTIDA
