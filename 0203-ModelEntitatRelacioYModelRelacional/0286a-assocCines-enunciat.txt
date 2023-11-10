@@ -1,0 +1,51 @@
+L'associació de cinemes d'una ciutat vol crear un servei telefònic en el qual es puga fer qualsevol tipus de consulta sobre les pel·lícules que s'estan projectant actualment. Alguns exemples de consultes són els següents: en quins cinemes fan una determinada pel·lícula i l'horari de les passades, quines pel·lícules de dibuixos animats s'estan projectant i on, quines pel·lícules hi ha en un determinat cinema, etc. 
+
+L'aplicació informàtica que s'implementarà necessitarà d'una base de dades relacional que continga tota esta informació.
+
+Com a primer pas, en este exercici es demana realitzar l'esquema conceptual.
+
+Per a cada cinema s'emmagatzemarà el nom, el carrer i número on està, el telèfon i els diferents preus segons el dia (dia de l'espectador, dia del jubilat,
+festius i vespres, etc.). 
+
+Cal tindre en compte que alguns cinemes tenen diverses sales. En cada sala es passaran una o diverses pel·lícules, cada pel·lícula a una certa hora.
+
+Per a cada pel·lícula es desitja anotar el títol, el nom del director, els noms dels protagonistes, el gènere (comèdia, intriga, etc.) i la classificació (tots els públics, a partir de 13 anys, a partir de 18 anys, etc.).
+
+(Basat en un exercici d'UJI)
+
+----
+
+La asociación de cines de una ciudad quiere crear un servicio telefónico en el que se pueda hacer cualquier tipo de consulta sobre las películas que se están proyectando actualmente. Algunos ejemplos de consultas son los siguientes: en qué cines hacen una determinada película y el horario de los pases, qué películas de dibujos animados se están proyectando y dónde, qué películas hay en un determinado cine, etc. 
+
+La aplicación informática que se va a implementar necesitará de una base de datos relacional que contenga toda esta información.
+
+Como primer paso, en este ejercicio se pide realizar el esquema conceptual.
+
+Para cada cine se almacenará el nombre, la calle y número donde está, el teléfono y los distintos precios según el día (día del espectador, día del jubilado,
+festivos y vísperas, etc.). 
+
+Hay que tener en cuenta que algunos cines tienen varias salas. En cada sala se pasarán una o varias películas, cada película a una cierta hora.
+
+Para cada película se desea anotar el título, el nombre del director, los nombres de los protagonistas, el género (comedia, intriga, etc.) y la clasificación (todos los públicos, a partir de 13 años, a partir de 18 años, etc.).
+
+
+Basado en un ejercicio de UJI, por Mercedes Marqués. Texto original:
+
+Ejemplo 6.8 Asociación de cines.
+«La asociación de cines de una ciudad quiere crear un servicio telefónico en el
+que se pueda hacer cualquier tipo de consulta sobre las películas que se están
+proyectando actualmente. Algunos ejemplos de consultas son los siguientes:
+en qué cines hacen una determinada película y el horario de los pases, qué
+películas de dibujos animados se están proyectando y dónde, qué películas hay
+en un determinado cine, etc. La aplicación informática que se va a implementar
+necesitará de una base de datos relacional que contenga toda esta información.
+Como primer paso, en este ejercicio se pide realizar el esquema conceptual.
+En concreto, para cada cine se debe dar el título de la película y el horario
+de los pases, además del nombre del director de la misma, el nombre de hasta
+tres de sus protagonistas, el género (comedia, intriga, etc.) y la clasificación
+(todos los públicos, a partir de 13 años, a partir de 18 años, etc.).
+Para cada cine también se almacenará la calle y número donde está, el
+teléfono y los distintos precios según el día (día del espectador, día del jubilado,
+festivos y vísperas, etc.). Hay que tener en cuenta que algunos cines tienen
+varias salas en las que se pasan distintas películas y también que en un mismo
+cine se pueden pasar películas distintas en diferentes pases.»
