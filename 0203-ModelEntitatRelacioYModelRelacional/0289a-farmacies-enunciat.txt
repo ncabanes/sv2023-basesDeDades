@@ -1,0 +1,26 @@
+Se'ns demana ajudar a informatitzar una cadena de farmàcies que posseeix diverses botigues en diferents punts de la ciutat. Cada botiga posseeix una sèrie de medicaments, que són adquirits a diferents laboratoris (cada medicament és proporcionat per un sol laboratori). 
+
+Es vol emportar compte de les comandes que cada botiga realitza als laboratoris (en cada comanda pot haver-hi diversos medicaments), així com dels vendes realitzades als clients (en cada venda poden entregar-se diversos medicaments).
+
+Ha de construir un diagrama E-R que permeta controlar el flux d'entrada (comandes a laboratoris) i eixida de medicaments (vendes a clients).
+
+Basat en un exercici de la Universitat Magallanes, Xile
+
+
+----
+
+Se nos pide ayudar a informatizar una cadena de farmacias que posee varias tiendas en distintos puntos de la ciudad. Cada tienda posee una serie de medicamentos, que son adquiridos a distintos laboratorios (cada medicamento es proporcionado por un solo laboratorio). 
+
+Se quiere llevar cuenta de los pedidos que cada tienda realiza a los laboratorios (en cada pedido puede haber varios medicamentos), así como de los ventas realizadas a los clientes (en cada venta pueden entregarse varios medicamentos).
+
+Construya un diagrama E-R que permita llevar el control del flujo de entrada (pedidos a laboratorios) y salida de medicamentos (ventas a clientes).
+
+
+
+Basado en un ejercicio de la Universidad Magallanes, Chile. Texto original:
+
+Suponga una cadena de farmacias que posee varias bodegas en distintos puntos de la ciudad. Cada sucursal posee un stock de cada tipo de medicamento, los que son adquiridos a distintos laboratorios (cada medicamento es proporcionado por un solo laboratorio). Las sucursales solicitan medicamentos a cualquiera de las bodegas. Los medicamentos entregados por los laboratorios son almacenados en las bodegas.
+
+Los documentos utilizados son notas de pedido y guías de entrega. Además, el detalle del tipo y cantidad de medicamentos vendidos van quedando registrados en las boletas y facturas.
+
+Construya un diagrama E-R que permita llevar el control del flujo de entrada (Laboratorios) y salida de medicamentos (ventas).
