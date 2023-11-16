@@ -1,0 +1,53 @@
+EMPLEATS_I_CAPS(codEmpl, codCap, nomEmpl, nomCap, nomDepart, dataIni, codEst, nomEstudis)
+CP: (codEmpl, codCap)
+
+
+
+1. Separar grups repetitius
+
+(Potser no ens adonem de tots)
+
+EMPLEATS_I_CAPS(codEmpl, codCap, nomEmpl, nomCap, nomDepart, dataIni, codEst)
+CP: (codEmpl, codCap)
+
+ESTUDIS(codEst, nomEstudis)
+CP: codEst
+
+
+
+2. Separar atributs que depenguen de part de la clau
+
+(Només si la clau és composta)
+
+EMPLEATS_I_CAPS(codEmpl, codCap, nomDepart, dataIni)
+CP: (codEmpl, codCap)
+
+ESTUDIS(codEst, nomEstudis)
+CP: codEst
+
+CAPS(codCap, nomCap)
+CP: codCap
+
+EMPLEATS(codEmpl, nomEmpl, codEst)
+CP: codEmpl
+
+
+
+3. Separar atributs que depenguen d'altres atributs (no clave)
+
+(El departament no depén del codi d'empleat ni del codi de cap)
+
+EMPLEATS_I_CAPS(codEmpl, codCap, codDepart, dataIni)
+CP: (codEmpl, codCap)
+
+ESTUDIS(codEst, nomEstudis)
+CP: codEst
+
+CAPS(codCap, nomCap)
+CP: codCap
+
+EMPLEATS(codEmpl, nomEmpl, codEst)
+CP: codEmpl
+
+DEPARTAMENTS(codDepart, nomDepart)
+CP: codDepart
