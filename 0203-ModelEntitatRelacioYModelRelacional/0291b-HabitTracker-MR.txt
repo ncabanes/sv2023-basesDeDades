@@ -1,0 +1,30 @@
+Coach (id, name)
+PK: id 
+
+User (id, name, coachId)
+PK: id 
+CAj coachId -> coach
+
+Habit (id, name)
+PK: id
+
+UserHasHabit (habitId, UserId)
+PK: habitId, UserId
+FK: habitId -> habit
+FK: UserId -> user
+
+CheckIn (id, date, UserId, habitId)
+PK: id
+FK: UserId -> user (VNN)
+FK: habitId -> habit (VNN)
+
+Comment (id, text, date, ChekinId)
+PK: id
+FK: ChekInId -> checkIn (VNN)
+
+Write (userId, coachId, commentId)
+PK: userId, commentId
+CAlt: coachId, commentId
+FK: userId -> user
+FK: commentId -> comment
+FK: coachId -> coach
