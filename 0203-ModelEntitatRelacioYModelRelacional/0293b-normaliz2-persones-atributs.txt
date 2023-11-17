@@ -1,9 +1,32 @@
-PERSONES(dni,nom, tlf, ciutat, país)
+PERSONA(dni,nom, tlf, ciutat, país)
 CP: dni
 
 1. Separar grups repetitius
 
+PERSONA(dni,nom, tlf, cod_ciutat, cod_país)
+CP: dni
+
+CIUTAT(cod, nom)
+CP: cod
+
+PAÍS(cod, nom)
+CP: cod
+
+
 2. Separar atributs que depenguen de part de la clau
+
+(Res a fer, no hi ha clau composta)
+
 
 3. Separar atributs que depenguen d'altres atributs (no clave)
 
+(El país és una dada de la ciutat)
+
+PERSONA(dni,nom, tlf, cod_ciutat)
+CP: dni
+
+CIUTAT(cod, nom, cod_país)
+CP: cod
+
+PAÍS(cod, nom)
+CP: cod
