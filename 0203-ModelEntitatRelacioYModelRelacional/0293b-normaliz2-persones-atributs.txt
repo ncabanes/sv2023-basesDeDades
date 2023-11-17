@@ -1,0 +1,9 @@
+PERSONES(dni,nom, tlf, ciutat, país)
+CP: dni
+
+1. Separar grups repetitius
+
+2. Separar atributs que depenguen de part de la clau
+
+3. Separar atributs que depenguen d'altres atributs (no clave)
+
