@@ -1,0 +1,50 @@
+PERSONA(nombre, nacionalidad)
+CP: nombre
+
+COLEGIADO(nombre)
+CP: nombre
+CAj: nombre -> PERSONA
+
+PERSONA_EQUIPO(nombre, edad)
+CP: nombre
+CAj: nombre -> PERSONA
+
+JUGADOR(nombre, apodo, ciudad, club, liga, cod_seleccion)
+CP: nombre
+CAj: nombre -> PERSONA_EQUIPO
+CAj: cod_seleccion -> SELECCION
+
+ENTRENADOR(nombre)
+CP: nombre
+CAj: nombre -> PERSONA_EQUIPO
+
+EXCLUBS_ENTRENADOR(nombre, exclub)
+CP: (nombre, exclub)
+CAj: nombre -> ENTRENADOR
+
+SELECCION(cod, nombre, nom_entrenador)
+CP: cod
+CAlt: nom_entrenador
+CAJ: nom_entrenador -> ENTRENADOR
+
+PARTIDO(fecha, resultado, cod_selecc1, cod_selecc2,nombre_estadio)
+CP: fecha
+CAj: cod_selecc1 -> SELECCION
+CAj: cod_selecc2 -> SELECCION
+CAj: nombre_estadio -> ESTADIO
+VNN: cod_selecc1
+VNN: cod_selecc2
+VNN: cod_estadio
+
+ESTADIO(nombre, ciudad, capacidad)
+CP: nombre
+
+JUGAR(nom_jugador, fecha_partido, posición)
+CP: (nom_jugador, fecha_partido)
+CAj: nom_jugador -> JUGADOR
+CAj: fecha_partido -> PARTIDO
+
+ARBITRAR(nom_colegiado, fecha_partido, función)
+CP: (nom_colegiado, fecha_partido)
+CAJ: nom_colegiado -> COLEGIADO
+CAj: fecha_partido -> PARTIDO
