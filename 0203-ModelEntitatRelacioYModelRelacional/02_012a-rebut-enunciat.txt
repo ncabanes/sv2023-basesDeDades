@@ -1,0 +1,1 @@
+Crea el diagrama EER per a una nova entitat, que permeta anotar "rebuts" creats per a clients. De cada rebut s'anotarà el número, el nom del client, la data i l'import pagat. Tria la clau que consideres adequada.
