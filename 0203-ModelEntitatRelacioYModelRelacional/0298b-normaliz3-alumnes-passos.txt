@@ -1,0 +1,35 @@
+Dades inicials
+
+AlumnesIProfessors(alumne, professor, assignatura, tema, nota)
+CP: (alumne, professor, tema)
+
+1 - Separar grups repetitius
+
+Alumnes(codi, nom)
+CP: codi
+
+Professors(codi, nom)
+CP: codi
+
+Temes(codi, nom)
+CP: codi
+
+Asignatures(codi, nom)
+CP: codi
+
+AlumnesIProfessors(codiAlumne, codiProfessor, codiAssignatura, codiTema, nota)
+CP: (codiAlumne, codiProfessor, codiTema)
+
+
+2 - Part de la clau
+
+Temes(codi, nom, codiAssignatura)
+CP: codi
+
+AlumnesIProfessors(codiAlumne, codiProfessor, codiTema, nota)
+CP: (codiAlumne, codiProfessor, codiTema)
+
+
+3 - No clau
+
+(fet)
