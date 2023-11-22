@@ -1,0 +1,42 @@
+INGREDIENTE (nombre,vitA,vitB,vitC,calorias,precioK)
+CP: nombre
+
+PRODUCTO(nombre)
+CP: nombre
+
+INGREDIENTE_PRODUCTO(nombreIng, nombrePro, porcentaje)
+CP: (nombreIng, nombrePro)
+CAj.: nombreIng --> INGREDIENTE (nombre)
+CAj.: nombrePro --> PRODUCTO (nombre)
+
+PRODUCTO_SIMILAR(nombre, marca, año_inicio, nombreProd)
+CP: nombre
+CAj: nombreProd --> PRODUCTO(nombre) VNN
+
+FORMATO(nombreProd, gramos, precio)
+CP: (nombreProd, gramos)
+CAj: nombreProd --> PRODUCTO(nombre)
+
+CLIENTE(cif, nombre, poblacion, prov, direc, tlfn)
+CP: cif
+
+CLIENTE_PEDIR_FORMATO (nombreProd, gramosFor, cifCliente)
+CP: (nombreProd, gramosFor, cifCliente)
+CAj: nombreProd --> FORMATO(nombreProd)
+CAj: gramosFor --> FORMATO (gramos)
+CAj: cifCliente --> CLIENTE (cif)
+
+PEDIR_FECHA_CANTIDAD(nombreProd, gramosFor, cifCliente, fecha, ctd)
+CP: (nombreProd, gramosFor, cifCliente, fecha)
+CAj: nombreProd --> CLIENTE_PEDIR_FORMATO(nombreProd)
+CAj: gramosFor --> CLIENTE_PEDIR_FORMATO (gramosFor)
+CAj: cifCliente --> CLIENTE_PEDIR_FORMATO(cifCliente)
+
+PROMOCION(año, tipo, f_in, f_fin)
+CP: año
+
+FORMATO_PROMOCION(gramosFor, nombreProd, añoProm, beneficio, ctd)
+CP: (gramosFor, nombreProd, añoProm)
+CAj: gramosFor --> FORMATO(gramos)
+CAj: nombreProd --> FORMATO(nombreProd)
+CAj: añoProm --> PROMOCION(año)
