@@ -1,0 +1,32 @@
+TIPO_BUQUE(tipo, tonelaje, casco)
+CP: tipo
+
+PAIS(nombre, continente)
+CP: nombre
+
+MAR(nombre, profund)
+CP: nombre
+
+PUERTO(nombrePais, nombre, descripc, nombreMar)
+CP: (nombrePais, nombre)
+CAj: nombrePais -> PAIS
+CAj: nombreMar -> MAR 
+VNN: nombreMar
+
+BUQUE(nombre, dueño, codigoTipo, nombrePais, codigoPuertoOrigen)
+CP: nombre
+CAj: codigoTipo -> TIPO_BUQUE
+CAj: nombrePais -> PUERTO
+CAj: codigoPuertoOrigen -> PUERTO
+VNN: codigoTipo
+
+MOVIMIENTO_BUQUE(nombreBuque, fecha, hora, longitud, latitud)
+CP: (nombreBuque, fecha, hora)
+CAj: nombreBuque -> BUQUE
+
+VISITA(nombreBuque, nombrePais, nombrePuerto, fechaInicio, fechaFin)
+CP: (nombreBuque, nombrePais, nombrePuerto, fechaInicio)
+CAj: nombreBuque -> BUQUE
+CAJ: nombrePais -> PUERTO
+CAJ: nombrePuerto -> PUERTO
+
