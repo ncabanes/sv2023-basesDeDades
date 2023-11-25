@@ -1,0 +1,11 @@
+Es tracta de captar en un diagrama EER l'organització d'un congrés científic.
+
+De totes les persones que participen en el congrés s'ha de conéixer el seu nom, direcció i país d'origen.
+
+Al congrés es presenten ponències escrites per 1 o diversos autors que són participants. De cada ponència ens interessa el títol que s'usa per a identificar-la, i el nombre de pàgines. Un autor pot presentar diverses ponències.
+
+A cada ponència se li assignen diversos revisors que són participants. Un revisor pot ser-ho de moltes ponències.
+
+Els participants pertanyen a diferents països. A cada país se li assigna un factor de cost.
+
+A cada sessió (que són numerades i tenen data i hora) es poden presentar diverses ponències. Des del punt de vista de l'organització, els assistents (que són participants) acudeixen a les sessions i no a la ponència en concret. Una persona pot acudir a diverses sessions i una ponència se li assigna una única sessió.
