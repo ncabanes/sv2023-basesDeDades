@@ -1,0 +1,49 @@
+ARTS MARCIALS(CodiCampionat, CodiLluitador, CodiCategoria, NomCampionat, Ciutat, NomLluitador, NomCategoria, Resultat)
+CP: (CodiCampionat, CodiLluitador, CodiCategoria)
+
+
+1 - Separar grups repetitius
+
+CAMPIONAT(codi, nom)
+CP: codi
+
+LLUITADOR(codi, nom)
+CP: codi
+
+CATEGORIA(codi, nom)
+CP: codi
+
+ARTS MARCIALS(CodiCampionat, CodiLluitador, CodiCategoria, Ciutat, Resultat)
+CP: (CodiCampionat, CodiLluitador, CodiCategoria)
+
+
+2 - Part de la clau
+
+(Ja fet)
+
+
+3 - No clau
+
+CIUTAT(codi, nom)
+CP: codi
+
+ARTS MARCIALS(CodiCampionat, CodiLluitador, CodiCategoria, CodiCiutat, Resultat)
+CP: (CodiCampionat, CodiLluitador, CodiCategoria)
+
+
+-- Resultat ------
+
+CAMPIONAT(codi, nom)
+CP: codi
+
+LLUITADOR(codi, nom)
+CP: codi
+
+CATEGORIA(codi, nom)
+CP: codi
+
+CIUTAT(codi, nom)
+CP: codi
+
+ARTS MARCIALS(CodiCampionat, CodiLluitador, CodiCategoria, CodiCiutat, Resultat)
+CP: (CodiCampionat, CodiLluitador, CodiCategoria)
