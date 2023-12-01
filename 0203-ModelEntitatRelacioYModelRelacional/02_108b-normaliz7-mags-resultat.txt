@@ -1,0 +1,51 @@
+BATALLA(Conjur, CodiDe, NomDe, CasaDe, CodiA, NomA, CasaA, Resultat)
+CP: (CodiDe, CodiA)
+
+
+1 - Separar grups repetitius
+
+CONJUR(codi, nom)
+CP: codi
+
+CASA(codi, nom)
+CP: codi
+
+RESULTAT(codi, nom)
+CP: codi
+
+(...)
+
+BATALLA(CodiConjur, CodiDe, NomDe, CodiCasaDe, CodiA, NomA, CodiCasaA, codiResultat)
+CP: (CodiDe, CodiA)
+
+
+2 - Part de la clau
+
+MAG(codi, nom, codiCasa)
+CP: codi
+
+BATALLA(CodiDe, CodiA, CodiConjur, codiResultat)
+CP: (CodiDe, CodiA)
+
+
+3 - No clau
+
+(Ja fet)
+
+
+-- Resultat ------
+
+CONJUR(codi, nom)
+CP: codi
+
+CASA(codi, nom)
+CP: codi
+
+RESULTAT(codi, nom)
+CP: codi
+
+MAG(codi, nom, codiCasa)
+CP: codi
+
+BATALLA(CodiDe, CodiA, CodiConjur, codiResultat)
+CP: (CodiDe, CodiA)
