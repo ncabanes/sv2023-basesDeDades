@@ -1,0 +1,45 @@
+CIUTAT(codi, nom, provincia, comunitat, clima)
+CP: codi
+
+1 - Separar grups repetitius
+
+PROVINCIA(codi, nom)
+CP: codi
+
+COMUNITAT(codi, nom)
+CP: codi
+
+CLIMA(codi, nom)
+CP: codi
+
+CIUTAT(codi, nom, codProvincia, codComunitat, codClima)
+CP: codi
+
+
+2 - Part de la clau
+
+(Fet)
+
+
+3 - No clau
+
+CIUTAT(codi, nom, codProvincia, codClima)
+CP: codi
+
+PROVINCIA(codi, nom, codComunitat)
+CP: codi
+
+
+-- Resultat ------
+
+COMUNITAT(codi, nom)
+CP: codi
+
+PROVINCIA(codi, nom, codComunitat)
+CP: codi
+
+CLIMA(codi, nom)
+CP: codi
+
+CIUTAT(codi, nom, codProvincia, codClima)
+CP: codi
