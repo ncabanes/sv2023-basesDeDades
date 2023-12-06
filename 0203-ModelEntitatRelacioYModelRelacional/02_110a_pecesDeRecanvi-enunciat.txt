@@ -1,0 +1,31 @@
+PECES DE RECANVI
+
+Ens han demanat automatitzar la gestió d'un sistema de recanvis, tenint en compte els següents requisits:
+
+- Disposem de peces, les quals poden estar formades per altres peces. Per a cada peça desitgen anotar el seu codi, el seu nom, el seu preu de cost, el preu de venda i la categoria a la qual pertany.
+
+- Cada peça té assignat un o diversos punts de magatzematge (en els quals, per la seua part, es poden guardar diferents peces). Aquests punts de magatzematge, que es numeraran de l'1 cap avant, estan situats en zones de magatzematge, cadascuna de les quals tindrà un codi, un nom i una ubicació. Per a cada zona de magatzematge existirà almenys un punt de magatzematge (el número 1), si bé és habitual que existisquen varis.
+
+- Al seu torn, desitgen agrupar les peces en "nivells de planificació" (amb codi i nom). En cada nivell de planificació existiran, en general, moltes peces, mentre que cada peça pertanyerà forçosament a un nivell (i només a un).
+
+- A més, s'atendran comandes a clients (codi, nom, direcció, dades de contacte). Per a cada comanda s'anotarà un número consecutiu, començant cada any des de la comanda 1 (d'aqueix any) i la data. Cada client pot encarregar diverses peces, cadascuna en una certa quantitat i amb un cert preu (que es desitja anotar com a part de la comanda, per si canvia posteriorment).
+
+- També volen portar control del que han anomenat "clients interns", que realitzen "comandes internes". Per a aquestes comandes, no s'anotarà un número de comanda, sinó només la data, perquè no es permet més d'una comanda interna al dia. D'igual manera, per a cada peça d'una comanda interna, s'anotarà la quantitat, però consideren que no és necessari guardar el preu, per ser processos interns de l'empresa.
+
+
+
+---------
+
+PIEZAS DE REPUESTO
+
+Nos han pedido automatizar la gestión de un sistema de repuestos, teniendo en cuenta los siguientes requisitos:
+
+- Disponemos de piezas, las cuales a su vez pueden estar formadas por otras piezas. Para cada pieza desean anotar su código, su nombre, su precio de coste, el precio de venta y la categoría a la que pertenece.
+
+- Cada pieza tiene asignado uno o varios puntos de almacenaje (en los que, a su vez, se pueden guardar distintas piezas). Estos puntos de almacenaje, que se van a numerar del 1 en adelante, están situados en zonas de almacenaje, cada una de las cuales tendrá un código, un nombre y una ubicación. Para cada zona de almacenaje existirá al menos un punto de almacenaje (el número 1), si bien es habitual que existan varios.
+
+- A su vez, desean agrupar las piezas en "niveles de planificación" (con código y nombre). En cada nivel de planificación existirán, por lo general, muchas piezas, mientras que cada pieza pertenecerá forzosamente a un nivel (y sólo a uno).
+
+- Además, se van a atender pedidos a clientes (código, nombre, dirección, datos de contacto). Para cada pedido se anotará un número consecutivo, comenzando cada año desde el pedido 1 (de ese año) y la fecha. Cada cliente puede encargar diversas piezas, cada una en una cierta cantidad y con un cierto precio (que se desea anotar como parte del pedido, por si cambia posteriormente).
+
+- También quieren llevar control de lo que han llamado "clientes internos", que realizan "pedidos internos". Para estos pedidos, no se anotará un número de pedido, sino sólo la fecha, porque no se permite más de un pedido interno al día. De igual modo, para cada pieza de un pedido interno, se anotará la cantidad, pero consideran que no es necesario guardar el precio, al ser procesos internos de la empresa.
