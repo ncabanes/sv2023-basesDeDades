@@ -1,0 +1,35 @@
+EDITORIAL(codigo, nombre)
+PK: codigo
+
+SEDE(codigo, nombre)
+PK: codigo
+
+IDIOMA(codigo, nombre)
+PK: codigo
+
+AUTOR(codigo, nombre)
+PK: codigo
+
+ESCRIBE(codigo_autor, codigo_libro)
+PK: (codigo_autor, codigo_libro)
+FK: codigo_autor -> AUTOR
+FK: codigo_libro -> LIBRO
+
+LIBRO(codigo, titulo, fechaPublicacion, codigo_editorial, codigo_idioma)
+PK: codigo
+FK: codigo_editorial -> EDITORIAL
+FK: codigo_idioma -> IDIOMA
+
+EJEMPLAR(codigo_libro, codigo_ejemplar, estado, codigo_sede)
+PK: (codigo_libro, codigo_ejemplar)
+FK: codigo_libro -> LIBRO
+FK: codigo_sede -> SEDE
+
+SOCIO(codigo, nombre, direccion, telefono)
+PK: codigo
+
+TOMA_EN_PRESTAMO(codigo_libro, codigo_ejemplar, codigo_socio, fecha_ent, fecha_devol_prev, fecha_devol_real)
+PK: (codigo_libro, codigo_ejemplar, codigo_socio, fecha_ent)
+FK: codigo_socio -> SOCIO
+FK: codigo_ejemplar -> EJEMPLAR
+FK: codigo_libro -> EJEMPLAR
