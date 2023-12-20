@@ -23,6 +23,6 @@ INSERT INTO jocs VALUES ('smg2', 'Super Mario Galaxy 2', 'wii', 2010);
 
 SELECT nom FROM jocs;
 
--- Mostra totes les dades dels jocs de la plataforma "*ps3"
+-- Mostra totes les dades dels jocs de la plataforma "ps3"
 
 SELECT * FROM jocs WHERE plataforma = 'ps3';
