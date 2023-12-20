@@ -8,7 +8,7 @@ SELECT * FROM jocs WHERE any_ll > 2000;
 
 SELECT * FROM jocs WHERE any_ll <= 1997;
 
--- Jocs la plataforma dels quals no siga "*ps4"
+-- Jocs la plataforma dels quals no siga "ps4"
 
 SELECT * FROM jocs WHERE plataforma <> 'ps4';
 
@@ -43,7 +43,7 @@ WHERE any_ll BETWEEN 2010 AND 2020;
 -- =========================
 
 -- Jocs de qualsevol plataforma Playstation 
--- (el codi de la plataforma comença per "*ps")
+-- (el codi de la plataforma comença per "ps")
 
 SELECT *
 FROM jocs
