@@ -1,10 +1,10 @@
 -- Dades del país (country) amb codi ("code") “BGR”.
 
-SELECT * FROM country WHERE code == "BGR";
+SELECT * FROM country WHERE code = 'BGR';
 
 -- Nom (name) del país (country) amb codi ("code") "BHS".
 
-SELECT name FROM country WHERE code == "BHS";
+SELECT name FROM country WHERE code = 'BHS';
 
 -- Nom (name) i població (population) dels països (country) amb 20 habitants o menys.
 
