@@ -1,5 +1,3 @@
-nader Antón - 1º DAW
-
 --Quantitat de dades introduïdes
 SELECT COUNT(code) FROM country;
 
