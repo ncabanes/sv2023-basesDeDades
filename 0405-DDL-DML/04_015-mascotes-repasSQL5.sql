@@ -11,7 +11,7 @@ CREATE TABLE mascotes
     codi NUMERIC(5) PRIMARY KEY,
     nom VARCHAR(50),
     tipus VARCHAR(60),
-    codiPropietari VARCHAR(5)
+    codiPropietari NUMERIC(5)
 );
 
 INSERT INTO propietaris VALUES (1,'Fernando','Garcia',654123851);
@@ -87,20 +87,20 @@ FROM mascotes;
 
 -- 11. Quantitat de mascotes que tenim de cada tipus.
 
-SELECT tipus, COUNT(tipus)
+SELECT tipus, COUNT(*)
 FROM mascotes
 GROUP BY tipus;
 
 -- 12. Tipus de mascotes de les quals tenim informació de 2 o més animals.
 
-SELECT tipus, COUNT(tipus) as quantitat
+SELECT tipus, COUNT(*) as quantitat
 FROM MASCOTES
 GROUP BY tipus
 HAVING quantitat >=2;
 
 -- 13. Cognom i nom de cada propietari, juntament amb la seua quantitat de mascotes.
 
-SELECT cognoms, p.nom, COUNT(m.CODIPROPIETARI)
+SELECT cognoms, p.nom, COUNT(*)
 FROM MASCOTES m, PROPIETARIS p
 WHERE p.codi = codipropietari
 GROUP BY p.nom, cognoms;
@@ -115,4 +115,4 @@ FROM propietaris;
 SELECT cognoms
 FROM propietaris
 GROUP BY cognoms
-HAVING COUNT(cognoms) > 1;
+HAVING COUNT(*) > 1;
