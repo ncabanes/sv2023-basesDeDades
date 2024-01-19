@@ -1,0 +1,115 @@
+-- (A partir de los datos de países y ciudades)
+
+-- 1. Población (population) del país más poblado
+
+SELECT MAX(Population) FROM country;
+
+-- 2. Nombre (name) y población del país más poblado
+
+SELECT name, Population
+FROM country
+WHERE Population =
+(
+        SELECT MAX(Population) FROM country
+);
+
+-- 3. Países de Asia (Asia)
+
+SELECT name
+FROM COUNTRY
+WHERE continent ='Asia';
+
+-- 4. Ciudades de Asia, usando una subconsulta con IN
+
+SELECT name 
+FROM CITY
+WHERE countrycode IN
+(
+    SELECT code FROM country WHERE continent = 'Asia'
+);
+
+-- 5, 6, 7. Países con más población que todos los de África (Africa)
+
+-- 5. Alternativa 1: Más población que la máxima
+
+SELECT name, Population
+FROM COUNTRY
+WHERE Population >
+(
+    SELECT MAX(Population) FROM country WHERE continent='Africa'
+) 
+ORDER BY name;
+
+-- 6. Alternativa 2: Más población que todas las de la lista de poblaciones de África
+
+SELECT name, Population
+FROM COUNTRY
+WHERE Population > ALL
+(
+    SELECT Population FROM country WHERE continent='Africa'
+) 
+ORDER BY name;
+
+-- 7. Alternativa 3: (NOT) EXISTS - Países para los que no existe un país en África que tenga más población que él
+
+SELECT name, Population
+FROM country c1
+WHERE NOT EXISTS
+(
+    SELECT name FROM country c2 
+    WHERE continent='Africa' 
+    AND c2.Population > c1.Population
+) 
+ORDER BY name;
+
+-- 8. Ciudades que están en la misma región (district) que "Eindhoven".
+
+SELECT name
+FROM city
+WHERE district =
+(
+    SELECT district FROM city WHERE name='Eindhoven'
+) 
+AND name <> 'Eindhoven';
+
+
+-- 9, 10, 11. Ciudades que tienen menos población que todas las de Bélgica (Belgium) (deseable: 3 versiones distintas)
+
+-- 9. Alternativa 1: Menos que la mínima
+
+SELECT name, population
+FROM city
+WHERE Population <
+(
+    SELECT MIN(city.Population) 
+    FROM city, country 
+    WHERE country.code = city.countrycode
+        AND country.name='Belgium'
+) 
+ORDER BY name;
+
+-- 10. Alternativa 2: Menos que todas las de una lista
+
+SELECT name, population
+FROM city
+WHERE population < ALL
+(
+    SELECT c2.Population 
+    FROM city c2, country 
+    WHERE country.code = c2.countrycode 
+    AND country.name='Belgium'
+) 
+ORDER BY name;
+
+-- 11. Alternativa 3: No existe ninguna de Bélgica mayor que ellas
+
+SELECT c1.name, c1.population
+FROM city c1
+WHERE NOT EXISTS
+(
+    SELECT c2.name 
+    FROM city c2, country 
+    WHERE country.code = c2.countrycode 
+        AND country.name='Belgium' AND c1.population >= c2.Population
+)
+ORDER BY c1.name;
