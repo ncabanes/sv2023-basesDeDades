@@ -1,0 +1,46 @@
+D(d1, d2, d4, d5)
+CP: d1
+
+D_D6(d1, d6)
+CP: (d1, d6)
+CF: d1 -> D(d1)
+
+A(d1, a1, a2)
+CP: (d1, a1)
+CF: d1 -> D(d1)
+
+C(c1, c2, d1, a1)
+CP: c1
+VNN: d1
+VNN: a1
+CF: d1 -> A(d1)
+CF: a1 -> A(a1)
+
+F(c1, f1, f2)
+CP: c1
+CF: c1 -> C(c1)
+
+J(d1, a1, c1)
+CP: (d1, a1, c1)
+CF: d1 -> A(d1)
+CF: a1 -> A(a1)
+CF: c1 -> F(c1)
+
+G(c1, g1)
+CP: c1
+CF: c1 -> C(c1)
+
+L(l1, l2, c1)
+CP: l1
+CAlt: c1
+CF: c1 -> G(c1)
+
+K(k1, k2)
+CP: k1
+
+N(d1, k1, l1)
+CP: (d1, k1)
+CAlt: (k1, l1)
+CF: d1 -> D(d1)
+CF: k1 -> K(k1)
+CF: l1 -> L(l1)
