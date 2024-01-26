@@ -1,0 +1,11 @@
+Se desea crear un sistema de información para un administrador de fincas.
+
+Quiere llevar el control de distintas urbanizaciones, cada una de ellas con uno o varios inmuebles, que a su vez pertenecen a distintos propietarios. Cada inmueble pertenecerá a una única urbanización. Por otra parte, cada inmueble puede tener uno o varios propietarios, pero, para cada inmueble, nos interesa especialmente uno de los propietarios, que se hará responsable de recibir las comunicaciones y de realizar el pago de los recibos. Un propietario puede serlo de más de un inmueble (por completo o con un cierto porcentaje de participación).
+
+Cada urbanización tiene un código, una dirección física y un presidente, que es uno de los propietarios. De cada inmueble querremos anotar la escalera, el piso y la puerta, y se le asigna un cierto porcentaje del total de la urbanización. Nos han insistido en que como clave primaria no basta con escalera, piso y puerta, porque (por ejemplo) hay un piso 1º A en la mayoría de urbanizaciones.
+
+De cada propietario querremos anotar, además de su nombre y de un código alfanumérico, un correo electrónico y uno o varios números de teléfono. En el caso del presidente de cada urbanización, nos han dicho que también les interesa un campo de "anotaciones", en el que se guardarán detalles como su horario de contacto.
+
+También quiere llevar cuenta de las reuniones que se realizan con los propietarios. Cada reunión se realiza en una cierta urbanización, en cierta fecha y a ella asisten varios propietarios. En esa reunión se tratarán diferentes puntos del orden del día, cada uno de ellos con un código correlativo (por ejemplo, el punto 1 puede ser el "Estado de cuentas", y el punto 2 puede ser "Arreglo del tejado de la escalera 1").
+
+Cada inmueble será notificado de una serie de pagos a realizar, que pueden ser corrientes (la cuota mensual correspondiente a su inmueble) o especiales (por ejemplo, una derrama debida a reparar goteras en el tejado). Los pagos corrientes tendrán asociados una categoría, un número de mes, un año y un importe (ninguno de los cuales puede ser nulo), así como una fecha de pago (que sí será nula inicialmente). Los pagos especiales tendrán una descripción, una fecha de pago (inicialmente nula), y estarán asociados a un cierto punto del día de una reunión de propietarios.
