@@ -31,17 +31,17 @@ INSERT INTO series VALUES ('boys', 'The boys', 3, 'amz');
 
 -- 1. Canvia el codi de canal a NULL per a la sèrie anomenada "The expanse", que no s'emet ja.
 
-UPDATE series SET codicanal = NULL WHERE series.nom = "The expanse";
+UPDATE series SET codicanal = NULL WHERE series.nom = 'The expanse';
 
 
 -- 2. Anota que la sèrie de codi "man" té 3 temporades.
 
-UPDATE series SET temporades = 3 WHERE codi = "man";
+UPDATE series SET temporades = 3 WHERE codi = 'man';
 
 
 -- 3. Incrementa en 1 la quantitat de temporades de la sèrie anomenada "Los Simpsons"
 
-UPDATE series SET temporades = temporades + 1 WHERE nom = "Los Simpsons";
+UPDATE series SET temporades = temporades + 1 WHERE nom = 'Los Simpsons';
 
 
 -- 4. Afig una sèrie amb codi "bear", nom "Bear", de 2 temporades i que no sabem en quin canal s'emet.
