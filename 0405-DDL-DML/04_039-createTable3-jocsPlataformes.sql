@@ -8,7 +8,7 @@ CREATE TABLE plataformes(
     codi CHAR(4),
     nom VARCHAR2(25) NOT NULL,
     CONSTRAINT pk_plataformes PRIMARY KEY (codi),
-    CONSTRAINT ck_plataformes UNIQUE(nom),
+    CONSTRAINT uk_plataformes_nom UNIQUE(nom)
 );
 
 CREATE TABLE Jocs(
