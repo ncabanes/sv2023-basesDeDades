@@ -7,13 +7,94 @@
 
 -- 1. Crea la taula de "professors" (codi i nom), amb sintaxi de Oracle. El codi serà clau primària i el nom ha de ser únic. Introduïx les dades dels tres professors, amb el format abreujat (amb els codis triats per tu).
 
+CREATE TABLE professors
+(
+    codi VARCHAR2(4),
+    nom VARCHAR2(20),
+    CONSTRAINT pk_professors PRIMARY KEY(codi),
+    CONSTRAINT uk_professors UNIQUE(nom)
+);
+
+INSERT INTO professors VALUES('H', 'Higinio');
+INSERT INTO professors VALUES('I', 'Ignacio');
+INSERT INTO professors VALUES('J', 'Javier');
+
+
 -- 2. Crea la taula de "cursos" (codi numèric, nom, codi de professor), amb sintaxi de Oracle. El codi serà clau primària, el nom no ha d'acceptar nuls, i el codi de professor serà clau aliena a la taula corresponent.
+
+CREATE TABLE cursos
+(
+    codi NUMBER(4),
+    nom VARCHAR2(30) NOT NULL,
+    codiProfessor VARCHAR2(4),
+    CONSTRAINT pk_cursos PRIMARY KEY(codi),
+    CONSTRAINT fk_cursos_professors 
+        FOREIGN KEY (codiProfessor)
+            REFERENCES professors(codi)
+);
 
 -- 3. Amplia la taula de "cursos", afegint un nou camp: la duració, numèric de 4 xifres.
 
+-- Oracle
+
+ALTER TABLE cursos ADD( duracio NUMBER(4) );
+
+-- SQLite
+
+ALTER TABLE cursos ADD COLUMN duracio NUMBER(4);
+
+-- Comprovació, en SQLite
+
+.schema cursos
+
 -- 4. Afig dades per a la taula de cursos, detallant tots els camps que realment tinguen valors (recorda que per al curs 3 no coneixem el professor ni les hores).
 
+INSERT INTO cursos 
+(codi, nom, duracio, codiProfessor)
+VALUES(1, 'Curso 1', 40, 'I');
+
+INSERT INTO cursos 
+(codi, nom, duracio, codiProfessor)
+VALUES(2, 'Curso 2', 20, 'J');
+
+INSERT INTO cursos (codi, nom) VALUES(3, 'Curso 3');
+
+INSERT INTO cursos 
+(codi, nom, duracio, codiProfessor)
+VALUES(4, 'Curso 4', 25, 'I');
+
+
 -- 5. Crea la taula d'alumnes (codi, nom, codi de curs). El codi serà clau primària i el nom ha de tindre com a mínim 2 lletres. Crea una taula "backupAlumnos" amb la mateixa estructura.
+
+CREATE TABLE alumnes
+(
+    codi VARCHAR2(4),
+    nom VARCHAR2(30),
+    codiCurs NUMBER(4),
+    CONSTRAINT pk_alumnes PRIMARY KEY(codi),
+    CONSTRAINT ck_alumnes_nom CHECK (LENGTH(nom) >= 2),
+    CONSTRAINT fk_alumnes_cursos 
+        FOREIGN KEY (codiCurs)
+            REFERENCES cursos(codi)
+);
+
+INSERT INTO alumnes VALUES('M', 'Manuel', 1);
+INSERT INTO alumnes VALUES('N', 'Nadia', 1);
+INSERT INTO alumnes VALUES('O', 'Otilio', 1);
+INSERT INTO alumnes VALUES('P', 'Patricia', 1);
+INSERT INTO alumnes VALUES('R', 'Ramón', 2);
+
+CREATE TABLE backupAlumnes
+(
+    codi VARCHAR2(4),
+    nom VARCHAR2(30),
+    codiCurs NUMBER(4),
+    CONSTRAINT pk_bAlumnes PRIMARY KEY(codi),
+    CONSTRAINT ck_bAlumnes_nom CHECK (LENGTH(nom) >= 2),
+    CONSTRAINT fk_bAlumnes_cursos 
+        FOREIGN KEY (codiCurs)
+            REFERENCES cursos(codi)
+);
 
 -- 6. Mostra codi i nom dels alumnes del curs 1.
 
@@ -65,6 +146,9 @@
 
 -- 30. Buida la taula "backupAlumnos" (sense usar DELETE).
 
+-- !!!!!!!!!
+TRUNCATE backupAlumnos;
+
 -- 31. Mostra els noms tant d'alumnes com de professors, en una mateixa columna.
 
 -- 32. Afig un professor anomenat "Manuel". Mostra els noms d'alumnes que coincidisquen amb el d'algun professor.
@@ -72,6 +156,9 @@
 -- 33. Mostra els noms d'alumnes que no coincidisquen amb el de cap professor.
 
 -- 34. Elimina la taula "backupAlumnos".
+
+-- !!!!!!!!
+DROP TABLE backupAlumnos;
 
 -- 35, 36. Mostra els noms dels cursos el codi dels quals està entre el 2 i el 5, tots dos inclusivament, de 2 formes diferents.
 
