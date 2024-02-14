@@ -98,77 +98,349 @@ CREATE TABLE backupAlumnes
 
 -- 6. Mostra codi i nom dels alumnes del curs 1.
 
+SELECT codi, nom
+FROM alumnes
+WHERE codiCurs = 1;
+
 -- 7. Mostra codi i nom dels alumnes de cursos que no siguen el 1.
+
+SELECT codi, nom
+FROM alumnes
+WHERE codiCurs <> 1;
 
 -- 8. Mostra els noms d'alumnes que comencen per M, usant LIKE.
 
+SELECT nom
+FROM alumnes
+WHERE UPPER(nom) LIKE 'M%';
+
 -- 9. Mostra els noms d'alumnes que comencen per M, usant SUBSTR.
+
+SELECT nom
+FROM alumnes
+WHERE SUBSTR(UPPER(nom),1,1) = 'M';
+
 
 -- 10. Mostra els noms d'alumnes que comencen per M, usant INSTR.
 
+SELECT nom
+FROM alumnes
+WHERE INSTR(UPPER(nom),'M') = 1;
+
+
 -- 11. Mostra els noms d'alumnes que NO comencen per M, usant LIKE.
+
+SELECT nom
+FROM alumnes
+WHERE UPPER(nom) NOT LIKE 'M%';
 
 -- 12. Mostra els noms d'alumnes que NO comencen per M, usant SUBSTR.
 
+SELECT nom
+FROM alumnes
+WHERE SUBSTR(UPPER(nom),1,1) <> 'M';
+
 -- 13. Mostra els noms d'alumnes que NO comencen per M, usant INSTR.
 
--- 14. Mostra la duració mitjana dels cursos, arredonida a una xifra decimal, amb l'àlies DuracMedia.
+SELECT nom
+FROM alumnes
+WHERE INSTR(UPPER(nom),'M') <> 1;
+
+
+-- 14. Mostra la duració mitjana dels cursos, arredonida a una xifra decimal, amb l'àlies DuracMitjana.
+
+SELECT ROUND(AVG(duracio), 1) AS duracMitjana
+FROM cursos;
+
 
 -- 15. Mostra els noms dels cursos que duren més de la mitjana.
 
+SELECT nom FROM cursos
+WHERE duracio > 
+(
+    SELECT AVG(duracio) FROM cursos
+);
+
 -- 16. Mostra el nom del curs més llarg, usant ORDER BY i LIMIT /FETCH.
+
+-- Prova prèvia
+
+SELECT nom, duracio
+FROM cursos 
+ORDER BY duracio DESC;
+
+
+-- SQLite, MySQL
+
+SELECT nom
+FROM cursos 
+ORDER BY duracio DESC 
+LIMIT 1;
+
+-- Oracle
+
+SELECT nom 
+FROM cursos 
+WHERE duracio IS NOT NULL
+ORDER BY duracio DESC 
+FETCH NEXT 1 ROWS ONLY;
 
 -- 17. Mostra el nom del curs més llarg, usant MAX i = o IN.
 
+SELECT nom FROM cursos
+WHERE duracio = 
+(
+    SELECT MAX(duracio) FROM cursos
+);
+
 -- 18. Mostra el nom del curs més llarg, usant ALL o ANY.
+
+SELECT nom FROM cursos
+WHERE duracio >= ALL 
+(
+    SELECT duracio FROM cursos
+    WHERE duracio IS NOT NULL
+);
 
 -- 19. Mostra el nom del curs més llarg, usant EXISTS o NOT EXISTS.
 
+-- Inclouent nuls
+
+SELECT nom FROM cursos c1
+WHERE NOT EXISTS
+(
+    SELECT nom FROM cursos c2
+    WHERE c2.duracio > c1.duracio
+);
+
+-- Sense nuls
+
+SELECT nom FROM cursos c1
+WHERE duracio IS NOT NULL AND NOT EXISTS
+(
+    SELECT nom FROM cursos c2
+    WHERE c2.duracio > c1.duracio
+);
+
 -- 20. Mostra els noms dels professors, juntament amb el nom dels cursos que impartixen (només per als professors i cursos que realment estan relacionats). Has d'emprar WHERE per a enllaçar les taules.
+
+-- SQLite
+
+SELECT professors.nom, cursos.nom
+FROM professors, cursos
+WHERE professors.codi = cursos.codiProfessor;
+
+-- Oracle
+
+SELECT professors.nom AS nomProf, cursos.nom as nomCurs
+FROM professors, cursos
+WHERE professors.codi = cursos.codiProfessor;
+
 
 -- 21. Mostra els noms dels professors, juntament amb el nom dels cursos que impartixen (només per als professors i cursos que realment estan relacionats). Has d'emprar JOIN per a enllaçar les taules.
 
+SELECT professors.nom AS nomProf, cursos.nom as nomCurs
+FROM professors JOIN cursos
+ON professors.codi = cursos.codiProfessor;
+
+
 -- 22. Mostra els noms de tots els professors, juntament amb el nom dels cursos que impartixen (potser cap).
+
+SELECT professors.nom AS nomProf, cursos.nom as nomCurs
+FROM professors LEFT JOIN cursos
+ON professors.codi = cursos.codiProfessor;
+
 
 -- 23. Mostra el nom de cada curs, juntament amb la quantitat d'alumnes, fins i tot per als cursos que no tinguen alumnes.
 
+SELECT cursos.nom, COUNT(alumnes.codi)
+FROM cursos LEFT JOIN alumnes
+ON cursos.codi = alumnes.codiCurs
+GROUP BY cursos.nom;
+
+
 -- 24. Mostra el nom de cada curs, juntament amb la quantitat d'alumnes, però només per als cursos amb més d'un alumne.
+
+SELECT cursos.nom, COUNT(alumnes.codi)
+FROM cursos LEFT JOIN alumnes
+ON cursos.codi = alumnes.codiCurs
+GROUP BY cursos.nom
+HAVING COUNT(alumnes.codi) > 1;
+
 
 -- 25. Mostra els codis i noms dels alumnes que assistixen al curs més llarg, ordenats alfabèticament.
 
+-- 25a. Duració del curs mès llarg
+
+SELECT MAX(duracio) FROM cursos;
+
+-- 25b. Codi del curs mès llarg
+
+SELECT codi FROM cursos WHERE duracio =
+(
+    SELECT MAX(duracio) FROM cursos
+);
+
+-- 25c. Consulta completa
+
+SELECT codi, nom FROM alumnes WHERE codiCurs IN 
+(
+    SELECT codi FROM cursos WHERE duracio =
+    (
+        SELECT MAX(duracio) FROM cursos
+    )
+)
+ORDER BY nom;
+
+
 -- 26. Canvia la duració del curs 3, que passarà a ser de 30 hores.
+
+UPDATE cursos
+SET duracio = 30
+WHERE codi = 3;
 
 -- 27. Esborra el curs 4.
 
+DELETE FROM cursos WHERE codi = 4;
+
 -- 28. Mostra els noms dels cursos per als quals no hi ha un professor assignat.
+
+SELECT nom
+FROM cursos 
+WHERE codiProfessor IS NULL;
 
 -- 29. Mostra la quantitat de professors que impartixen més d'un curs.
 
+-- 29a. Professors i cursos (22)
+
+SELECT professors.nom AS nomProf, cursos.nom as nomCurs
+FROM professors LEFT JOIN cursos
+ON professors.codi = cursos.codiProfessor;
+
+-- 29b. Professors i quantitat de cursos
+
+SELECT professors.nom, COUNT(cursos.codi)
+FROM professors LEFT JOIN cursos
+ON professors.codi = cursos.codiProfessor
+GROUP BY professors.nom;
+
+-- 29c. Professors amb més d'un curs
+
+SELECT professors.nom, COUNT(cursos.codi)
+FROM professors LEFT JOIN cursos
+ON professors.codi = cursos.codiProfessor
+GROUP BY professors.nom
+HAVING COUNT(cursos.codi) > 1;
+
+-- 29d. Consulta completa
+
+SELECT COUNT(*) FROM
+(
+    SELECT professors.nom, COUNT(cursos.codi)
+    FROM professors LEFT JOIN cursos
+    ON professors.codi = cursos.codiProfessor
+    GROUP BY professors.nom
+    HAVING COUNT(cursos.codi) > 1
+);
+
+
 -- 30. Buida la taula "backupAlumnos" (sense usar DELETE).
 
--- !!!!!!!!!
-TRUNCATE backupAlumnos;
+-- No en SQLite
+
+TRUNCATE TABLE backupAlumnes;
+
 
 -- 31. Mostra els noms tant d'alumnes com de professors, en una mateixa columna.
 
+SELECT nom FROM alumnes
+UNION
+SELECT nom FROM professors;
+
+
 -- 32. Afig un professor anomenat "Manuel". Mostra els noms d'alumnes que coincidisquen amb el d'algun professor.
+
+INSERT INTO professors VALUES('M', 'Manuel');
+
+SELECT nom FROM alumnes
+INTERSECT
+SELECT nom FROM professors;
+
 
 -- 33. Mostra els noms d'alumnes que no coincidisquen amb el de cap professor.
 
+SELECT nom FROM alumnes
+EXCEPT
+SELECT nom FROM professors;
+
+
 -- 34. Elimina la taula "backupAlumnos".
 
--- !!!!!!!!
-DROP TABLE backupAlumnos;
+DROP TABLE backupAlumnes;
+
 
 -- 35, 36. Mostra els noms dels cursos el codi dels quals està entre el 2 i el 5, tots dos inclusivament, de 2 formes diferents.
 
+SELECT nom
+FROM cursos
+WHERE codi >= 2 AND codi <= 5;
+
+SELECT  nom
+FROM cursos
+WHERE codi BETWEEN 2 AND 5;
+
+
 -- 37. Mostra la quantitat de noms d'alumnes diferents que tenim.
+
+SELECT COUNT(DISTINCT nom)
+FROM alumnes;
+
 
 -- 38. Mostra els noms dels cursos que siguen més llargs que tots els que impartix el professor anomenat Javier.
 
+SELECT nom
+FROM cursos
+WHERE duracio >=
+(
+    SELECT MAX(duracio) FROM cursos, professors 
+    WHERE professors.codi = cursos.codiProfessor 
+    AND professors.nom = 'Javier'
+);
+
+
 -- 39. Mostra el nom dels 10 cursos més llargs, exceptuat els dos més llargs (és a dir, del tercer més llarg al dècim més llarg).
 
--- 40. Noms dels alumnes que estan en els cursos anomenats "Curs 1" o "Curs 2", usant "IN". En una mateixa columna han d'aparéixer el nom del curs i el nom de l'alumne, amb una aparença com a "Curs 1: Nadia".
+-- Previ: nom i duració dels cursos
+
+SELECT nom, duracio FROM cursos ORDER BY duracio DESC;
+
+-- Del 3 al 10, SQLite
+
+SELECT nom FROM cursos ORDER BY duracio DESC
+LIMIT 8 OFFSET 2;
+
+-- Del 3 al 10, Oracle
+
+SELECT nom FROM cursos ORDER BY duracio DESC
+OFFSET 2 ROWS
+FETCH NEXT 8 ROWS ONLY;
+
+
+-- 40. Noms dels alumnes que estan en els cursos anomenats "Curso 1" o "Curso 2", usant "IN". En una mateixa columna han d'aparéixer el nom del curs i el nom de l'alumne, amb una aparença com a "Curs 1: Nadia".
+
+-- Oracle
+
+SELECT CONCAT(c.nom, ': ', a.nom)
+FROM cursos c JOIN alumnes a
+ON c.codi = a.codiCurs
+WHERE c.nom IN ('Curso 1', 'Curso 2');
+
+-- SQLite
+
+SELECT c.nom || ': ' || a.nom
+FROM cursos c JOIN alumnes a
+ON c.codi = a.codiCurs
+WHERE c.nom IN ('Curso 1', 'Curso 2');
 
 
 -- --------------------------------
