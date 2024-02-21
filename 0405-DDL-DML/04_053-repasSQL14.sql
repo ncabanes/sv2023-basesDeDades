@@ -198,6 +198,38 @@ FETCH FIRST 1 ROWS ONLY;
 
 -- 19. Mostra que idiomes es parlen al país (o països) en el qual més idiomes ens consta que es parlen.
 
+--19a. Països i quantitat d'idiomes
+
+SELECT name, COUNT(DISTINCT language)
+FROM country LEFT JOIN countryLanguage
+ON country.code = countryLanguage.countryCode
+GROUP BY name;
+
+-- 19b. Primer registre
+
+SELECT name, COUNT(DISTINCT language)
+FROM country LEFT JOIN countryLanguage
+ON country.code = countryLanguage.countryCode
+GROUP BY name
+ORDER BY COUNT(DISTINCT language) DESC
+FETCH FIRST 1 ROWS WITH TIES;
+
+--19c. Consulta completa
+
+SELECT name, language
+FROM country JOIN countryLanguage
+ON country.code = countryLanguage.countryCode
+WHERE country.code IN
+(
+  SELECT country.code
+  FROM country LEFT JOIN countryLanguage
+  ON country.code = countryLanguage.countryCode
+  GROUP BY name
+  ORDER BY COUNT(DISTINCT language) DESC
+  FETCH FIRST 1 ROWS WITH TIES
+);
+
+
 -- Enllaçant amb la taula "city", mostra:
 
 -- 20. Al costat del nom de cada ciutat, el nom del país al qual pertany.
@@ -324,13 +356,68 @@ CREATE TABLE ciutatsEspanya
     CONSTRAINT pk_ciutatsEspanya PRIMARY KEY(codi)
 );
 
+
 -- 29. Amplia la taula anterior per a afegir un camp "població" (numèric 12).
 
 ALTER TABLE ciutatsEspanya ADD (poblacio NUMBER(12));
 
+
 -- 30. Introduïx en eixa taula les dades corresponents de les ciutats d'Espanya.
 
--- 31. Mostra les ciutats, juntament amb la quantitat de parlants de cada idioma, per al país que ens aparega com a menys poblat (però amb població superior a 0) i del qual tinguem dades tant de ciutats com d'idiomes.
+-- 30a. A partir del codi (no desitjable)
+
+INSERT INTO ciutatsEspanya
+SELECT id, name, population 
+	FROM city
+	WHERE countryCode = 'ESP';
+
+-- 30b. Creuant amb la taula de països
+
+INSERT INTO ciutatsEspanya
+SELECT id, city.name, city.population 
+	FROM city, country
+	WHERE city.countryCode = country.code
+	AND country.name = 'Spain';
+
+
+-- 31. Mostra les ciutats, juntament amb la quantitat de parlants de 
+-- idioma, per al país que ens aparega com a menys poblat (però amb 
+-- població superior a 0) i del qual tinguem dades tant de ciutats 
+-- com d'idiomes.
+
+-- 31a - Nom del país menys poblat
+
+SELECT country.name FROM country
+WHERE population = 
+(
+   SELECT MIN(population) FROM country
+   WHERE population > 0
+);
+
+-- 31b. Percentatges d'diomes al país menys poblat
+
+SELECT countryLanguage.percentage 
+FROM countryLanguage, country
+WHERE countryLanguage.countryCode = country.code
+AND country.population = 
+(
+   SELECT MIN(population) FROM country
+   WHERE population > 0
+);
+
+-- 31c. Consulta completa
+
+SELECT city.name, 
+	countryLanguage.percentage * city.population / 100 AS speakers
+FROM city, country, countryLanguage
+WHERE countryLanguage.countryCode = country.code
+AND city.countryCode = country.code
+AND country.population = 
+(
+   SELECT MIN(population) FROM country
+   WHERE population > 0
+);
+
 
 
 -- --------------------------------------------------
