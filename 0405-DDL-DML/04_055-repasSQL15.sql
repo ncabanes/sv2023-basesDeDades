@@ -99,13 +99,36 @@ INSERT INTO pellicules VALUES ('AVATA', 'Avatar', 2009, 7.9, 'JC');
 INSERT INTO pellicules VALUES ('FORRE', 'Forrest Gump', 1994, 8.8, 'RZ');
 INSERT INTO pellicules VALUES ('REGRE', 'Regreso al futuro', 1985, 8.5, 'RZ');
 INSERT INTO pellicules VALUES ('CABAL', 'El caballero oscuro', 2009, 9, 'CN');
-INSERT INTO pellicules VALUES ('GUERR', 'La guerra de las galaxias', 1977, 8.6, 'CL');
+INSERT INTO pellicules VALUES ('GUERR', 'La guerra de las galaxias', 1977, 8.6, 'GL');
 INSERT INTO pellicules VALUES ('INTER', 'Interstellar', 2014, 8.6, 'CN');
 INSERT INTO pellicules VALUES ('ALIEN', 'Alien', 1979, 8.5, 'RS');
 INSERT INTO pellicules VALUES ('BLADE', 'Blade Runner', 1982, 8.1, 'RS');
 INSERT INTO pellicules VALUES ('SEVEN', 'Seven', NULL, NULL, NULL);
 
 -- 1. Crea la taula "actuen"
+
+-- 1a. Estándar
+
+CREATE TABLE actuen (
+    codiPersona VARCHAR(5),
+    codiPellicula VARCHAR(5),
+    PRIMARY KEY (codiPersona,codiPellicula),
+    FOREIGN KEY (codiPersona) REFERENCES persones(codi), 
+    FOREIGN KEY (codiPellicula) REFERENCES pellicules(codi) 
+);
+
+-- 1a. Oracle
+
+CREATE TABLE actuen (
+    codiPersona VARCHAR2(5),
+    codiPellicula VARCHAR2(5),
+    CONSTRAINT pk_actuen 
+        PRIMARY KEY (codiPersona,codiPellicula),
+    CONSTRAINT fk_actuen_persones 
+        FOREIGN KEY (codiPersona) REFERENCES persones(codi), 
+    CONSTRAINT fk_actuen_pellicules 
+        FOREIGN KEY (codiPellicula) REFERENCES pellicules(codi) 
+);
 
 -- 2. Introduïx estes dades
 
@@ -128,3 +151,120 @@ INSERT INTO actuen VALUES('JCH', 'INTER');
 INSERT INTO actuen VALUES('SWE', 'ALIEN');
 INSERT INTO actuen VALUES('HFO', 'BLADE');
 INSERT INTO actuen VALUES('RHA', 'BLADE');
+
+-- 3. Llista ordenada de pel·lícules (títol, any i valoració).
+
+
+SELECT titol, anyLlancament, valoracio
+FROM pellicules
+ORDER BY titol, anyLlancament, valoracio;
+
+
+-- 4. Pel·lícula (títol i any) posteriors 
+-- al 2000 (però que no siguen de 2005) 
+-- amb una valoració superior a 8.5.
+
+SELECT titol, anyLlancament
+FROM pellicules
+WHERE anyLlancament > 2000
+AND anyLlancament <> 2005
+AND valoracio > 8.5;
+
+
+-- 5. Llista de directors, juntament 
+-- amb el nom de cadascuna de les 
+-- seues pel·lícules
+
+
+SELECT nom AS director, titol AS pellicula
+FROM persones, pellicules
+WHERE persones.codi = pellicules.codiDirector
+ORDER BY director, pellicula;
+
+SELECT nom AS director, titol AS pellicula
+FROM persones JOIN pellicules
+ON persones.codi = pellicules.codiDirector
+ORDER BY director, pellicula;
+
+
+-- 6. Nom de cada pel·lícula, juntament amb 
+-- els noms de cadascun dels seus actors
+
+SELECT titol AS pellicula, nom AS actor 
+FROM persones, pellicules, actuen
+WHERE actuen.codiPersona = persones.codi
+AND actuen.codiPellicula = pellicules.codi
+ORDER BY pellicula, actor;
+
+SELECT titol AS pellicula, nom AS actor 
+FROM pellicules JOIN actuen
+ON actuen.codiPellicula = pellicules.codi
+JOIN persones 
+ON actuen.codiPersona = persones.codi
+ORDER BY pellicula, actor;
+
+
+-- 7. Nom de cada pel·lícula, juntament amb els 
+-- noms de cadascun dels seus actors, fins i tot
+-- per a les pel·lícules de les quals no coneixem
+-- els actors
+
+SELECT titol AS pellicula, nom AS actor 
+FROM pellicules LEFT JOIN actuen
+ON actuen.codiPellicula = pellicules.codi
+LEFT JOIN persones 
+ON actuen.codiPersona = persones.codi
+ORDER BY pellicula, actor;
+
+
+-- 8. Nom de tots els actors/directors i totes 
+-- les pel·lícules, relacionats quan corresponga, 
+-- ordenat en primer lloc per persona i en segon 
+-- lloc per pel·lícula
+
+SELECT nom, titol 
+FROM pellicules FULL JOIN actuen
+ON actuen.codiPellicula = pellicules.codi
+FULL JOIN persones 
+ON actuen.codiPersona = persones.codi
+ORDER BY nom, titol;
+
+-- 9. Llista de actors, ordenats alfabèticament,
+-- i quantitat de pel·lícules en que han participat.
+
+-- 9a. Actors i pel·lícules
+
+SELECT nom, titol 
+FROM persones JOIN actuen
+ON persones.codi = actuen.codiPersona
+JOIN pellicules 
+ON actuen.codiPellicula = pellicules.codi
+ORDER BY nom, titol;
+
+-- 9b. Vista
+
+CREATE VIEW v_actoresPellicules AS
+    SELECT nom, titol 
+    FROM persones JOIN actuen
+    ON persones.codi = actuen.codiPersona
+    JOIN pellicules 
+    ON actuen.codiPellicula = pellicules.codi
+    ORDER BY nom, titol;
+
+SELECT * FROM v_actoresPellicules;
+
+SELECT nom, COUNT(*)
+FROM v_actoresPellicules
+GROUP BY nom;
+
+-- 9c. Alternativa compacta
+
+SELECT nom, COUNT(*) 
+FROM persones JOIN actuen
+ON persones.codi = actuen.codiPersona
+GROUP BY nom
+ORDER BY nom;
+
+-- 10. Actors que han treballat en pel·licules
+-- dirigides per Ridley Scott
+
