@@ -61,28 +61,28 @@ ORDER BY countryCode;
 SELECT name, COUNT(*)
 FROM countryLanguage, country
 WHERE country.code = countryLanguage.countryCode
-GROUP BY countryCode
-ORDER BY countryCode;
-
-SELECT name, COUNT(language)
-FROM country LEFT JOIN countryLanguage
-ON country.code = countryLanguage.countryCode
-GROUP BY countryCode
-ORDER BY countryCode;
+GROUP BY name
+ORDER BY name;
 
 -- Inclouent Antarctica
 
 SELECT name, COUNT(language)
 FROM country LEFT JOIN countryLanguage
 ON country.code = countryLanguage.countryCode
-GROUP BY countryCode
+GROUP BY name
+ORDER BY name;
+
+-- Comprovació: sense idiomes
+
+SELECT name, COUNT(language)
+FROM country LEFT JOIN countryLanguage
+ON country.code = countryLanguage.countryCode
+GROUP BY name
 HAVING COUNT(language) = 0
-ORDER BY countryCode;
+ORDER BY name;
 
 
 -- 8. El nom de cada país i el nom de l'idioma que més es parla en ell.
-
--- 
 
 SELECT name, language
 FROM country LEFT JOIN countryLanguage
