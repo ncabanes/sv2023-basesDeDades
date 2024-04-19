@@ -4,7 +4,7 @@
 
 DECLARE
     pNom plataformes.nom%TYPE:= 'Nintendo DS';
-    pCodi plataformes.codi%TYPE:= 'NDS';
+    pCodi plataformes.codi%TYPE:= 'nds';
 
 BEGIN
     INSERT INTO plataformes
