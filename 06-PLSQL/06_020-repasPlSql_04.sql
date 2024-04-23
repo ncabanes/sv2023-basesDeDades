@@ -61,6 +61,6 @@ INSERT INTO llibres VALUES('FLAN', 'La tabla de Flandes',2007, 'ALF','APR');
 
 -- Obtingues la quantitat d'autors dels quals no tenim llibres. Segons 
 -- el cas, escriu "Cap autor sense llibres", "Un autor sense llibres: " 
--- (seguit pel seu nom) o "Més d'un autor sense llibres", emprant CASE.
+-- o "Més d'un autor sense llibres", emprant CASE.
 
 
