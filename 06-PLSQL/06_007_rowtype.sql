@@ -16,7 +16,7 @@ BEGIN
     FROM jocs WHERE anyLlancament =
     (
         SELECT MAX(anyLlancament) FROM jocs
-    )
+    );
     
     dbms_output.put_line(v_joc.nom 
         || ' ' || v_joc.anyLlancament);
