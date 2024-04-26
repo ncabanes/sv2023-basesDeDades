@@ -5,7 +5,7 @@
 
 
 CREATE OR REPLACE FUNCTION QuantitatDePlataformes
-RETURN VARCHAR AS
+RETURN VARCHAR2 AS
 
     quantitat NUMBER(4);
 
