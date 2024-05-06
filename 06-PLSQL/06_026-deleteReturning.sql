@@ -6,7 +6,7 @@ DECLARE
     codiP Plataformes.codi%Type;
 BEGIN
     DELETE FROM plataformes WHERE codi ='nds' 
-    RETURNING codi,nom INTO nomP,codiP ;
+    RETURNING codi,nom INTO codiP,nomP ;
     
     dbms_output.put_line('Nom : ' || nomP);
     dbms_output.put_line('Codi : ' || codiP);
