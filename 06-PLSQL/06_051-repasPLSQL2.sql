@@ -3,6 +3,7 @@
 -- - Taula INGREDIENTS (codi, nom, preuKg)
 -- - Relació INGRED_RECEPTA(codiRecepta, codiIngredient, quantitatKg)
 
+
 CREATE TABLE receptes (
     codi CHAR(4) PRIMARY KEY, 
     nom VARCHAR2(30),
@@ -44,11 +45,65 @@ INSERT INTO ingred_recepta VALUES ('r2','i3',0.3);
 -- el text: "Trobats: XX", on XX serà la quantitat d'ingredients que no 
 -- s'utilitzen.
 
+-- Prova prèvia
+
+SELECT nom FROM ingredients WHERE codi 
+NOT IN (SELECT codiIngredient FROM ingred_recepta)
+ORDER BY nom;
+
+-- Procedure
+
+CREATE OR REPLACE PROCEDURE MostrarIngredientsOrfes
+AS
+    CURSOR cursorIngredOrf IS
+        SELECT nom FROM ingredients WHERE codi 
+        NOT IN (SELECT codiIngredient FROM ingred_recepta)
+        ORDER BY nom;
+    quantitat NUMBER := 0;
+
+BEGIN
+    dbms_output.put_line('Ingredients orfes:');
+    FOR i IN cursorIngredOrf LOOP
+        dbms_output.put_line(i.nom);
+        quantitat := quantitat + 1;
+    END LOOP;
+    
+    dbms_output.put_line('Trobats: ' || quantitat);
+END MostrarIngredientsOrfes;
+
+-- Ús
+
+EXECUTE MostrarIngredientsOrfes;
 
 
 -- 2.- Crea una funció "QuantitatIngredients" que, a partir del codi de 
 -- recepta, retorne la quantitat d'ingredients (potser 0) que conté.
 
+-- Prova prèvia
+
+SELECT COUNT(*)   
+FROM ingred_recepta
+WHERE codiRecepta = 'r1';
+
+-- Funció
+
+CREATE OR REPLACE FUNCTION QuantitatIngredients(v_codiRecepta IN VARCHAR2)
+RETURN NUMBER
+AS
+    v_quantitat NUMBER;
+BEGIN 
+    SELECT COUNT(*) INTO v_quantitat    
+    FROM ingred_recepta
+    WHERE codiRecepta = v_codiRecepta;
+
+    RETURN v_quantitat;
+END QuantitatIngredients;
+
+-- Ús
+
+EXECUTE dbms_output.put_line(QuantitatIngredients('r1'));
+
+SELECT QuantitatIngredients('r1') FROM dual;
 
 
 -- 3.- Crea un procediment "MostrarRecepta", que, a partir del codi de 
@@ -56,6 +111,54 @@ INSERT INTO ingred_recepta VALUES ('r2','i3',0.3);
 -- minuts, la dificultat, els noms i quantitats de cadascun dels 
 -- ingredients, i finalment, el preu de cost.
 
+-- Prova prèvia: ingredients d'una recepta
+
+SELECT nom, quantitatKg, preuKg
+FROM ingred_recepta, ingredients
+WHERE codiRecepta = 'r1'
+AND ingred_recepta.codiIngredient = ingredients.codi
+ORDER BY nom;
+
+-- Procedure
+
+CREATE OR REPLACE PROCEDURE MostrarRecepta(v_codiRecepta IN VARCHAR2)
+AS
+    v_recepta receptes % ROWTYPE;
+    v_cost NUMBER := 0;
+    
+    CURSOR cursorIngred IS
+        SELECT nom, quantitatKg, preuKg
+        FROM ingred_recepta, ingredients
+        WHERE codiRecepta = v_codiRecepta
+        AND ingred_recepta.codiIngredient = ingredients.codi
+        ORDER BY nom;
+
+BEGIN
+    SELECT * INTO v_recepta 
+    FROM receptes
+    WHERE codi = v_codiRecepta;
+    
+    dbms_output.put_line('Nom:' || v_recepta.nom);
+    dbms_output.put_line('Descripció:' || v_recepta.descripc);
+    dbms_output.put_line('Temps en minuts:' || v_recepta.tempsMinuts);
+    dbms_output.put_line('Dificultat:' || v_recepta.dificultat);
+    
+    FOR i IN cursorIngred LOOP
+        dbms_output.put_line(i.nom || ', ' || i.quantitatKg);
+        v_cost := v_cost + i.preuKg * i.quantitatKg;
+    END LOOP;
+    
+    dbms_output.put_line('Cost: ' || v_cost);
+    
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        dbms_output.put_line('Recepta no trobada');
+
+END MostrarRecepta;
+
+-- Ús
+
+EXECUTE MostrarRecepta('r1');
 
 
 -- 4.- Crea una taula "CopiaSeguretatIngred", amb la mateixa estructura 
@@ -63,6 +166,26 @@ INSERT INTO ingred_recepta VALUES ('r2','i3',0.3);
 -- "EsborratIngredient", que bolque a aqueixa taula cada ingredient que 
 -- s'esborre.
 
+CREATE TABLE CopiaSeguretatIngred (
+    codi CHAR(4) PRIMARY KEY, 
+    nom VARCHAR2(30),
+    preuKg NUMBER(7,5)
+);
+
+CREATE TRIGGER EsborratIngredient AFTER DELETE ON ingredients
+FOR EACH ROW 
+BEGIN
+    INSERT INTO CopiaSeguretatIngred VALUES(:OLD.codi, :OLD.nom, :OLD.preuKg);
+END;
+
+-- Prova
+
+INSERT INTO ingredients VALUES ('zz','ingredient ZZ',15);
+
+DELETE FROM ingredients WHERE codi = 'zz';
+
+SELECT * FROM ingredients;
+SELECT * FROM CopiaSeguretatIngred;
 
 
 -- 5.- Crea una taula "CanvisDePreu", formada per codi d'article, data, 
@@ -70,12 +193,32 @@ INSERT INTO ingred_recepta VALUES ('r2','i3',0.3);
 -- corresponent informació cada vegada que es modifique el preu d'un 
 -- ingredient.
 
+CREATE TABLE CanvisDePreu (
+    codi CHAR(4), 
+    dataCanvi DATE,
+    preuInicial NUMBER(7,5),
+    preuFinal NUMBER(7,5),
+    PRIMARY KEY(codi, dataCanvi)
+);
 
+CREATE TRIGGER CanviDePreu AFTER UPDATE ON ingredients
+FOR EACH ROW 
+BEGIN
+    INSERT INTO CanvisDePreu VALUES(:OLD.codi, 
+        SYSDATE, :OLD.preuKg, :NEW.preuKg);
+END;
+
+-- Prova
+
+UPDATE ingredients SET preuKg = 21.5 WHERE codi = 'i1';
+
+SELECT * FROM CanvisDePreu;
 
 -- -----
 /*
 Suponiendo la siguiente estructura básica para almacenar recetas de cocina:
-- Tabla RECETAS(código, nombre, descripción, tiempoMinutos, dificultad)
+- Tabla RECETAS(có
+digo, nombre, descripción, tiempoMinutos, dificultad)
 - Tabla INGREDIENTES (código, nombre, precioKg)
 - Relación INGRED_RECETA(códigoReceta, códigoIngrediente, cantidadKg)
 
