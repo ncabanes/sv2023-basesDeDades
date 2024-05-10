@@ -87,7 +87,7 @@ WHERE codiRecepta = 'r1';
 
 -- Funció
 
-CREATE OR REPLACE FUNCTION QuantitatIngredients(v_codiRecepta IN VARCHAR2)
+CREATE OR REPLACE FUNCTION QuantitatIngredients(v_codiRecepta IN CHAR)
 RETURN NUMBER
 AS
     v_quantitat NUMBER;
@@ -121,7 +121,7 @@ ORDER BY nom;
 
 -- Procedure
 
-CREATE OR REPLACE PROCEDURE MostrarRecepta(v_codiRecepta IN VARCHAR2)
+CREATE OR REPLACE PROCEDURE MostrarRecepta(v_codiRecepta IN CHAR)
 AS
     v_recepta receptes % ROWTYPE;
     v_cost NUMBER := 0;
