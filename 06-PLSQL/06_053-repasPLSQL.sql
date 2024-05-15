@@ -300,6 +300,42 @@ END;
 -- categoria 1 o preu 15 si és de categoria 2. Si és de qualsevol altra 
 -- categoria, deixarà el valor NULL.
 
+CREATE OR REPLACE TRIGGER PreuPerDefecte
+BEFORE INSERT ON productes
+FOR EACH ROW
+DECLARE
+    v_categ pertanyA.codiCateg % TYPE;
+BEGIN
+    SELECT codiCateg
+        INTO v_categ
+        FROM pertanyA
+        WHERE codiProd = :NEW.codi;
+        
+    CASE v_categ
+        WHEN 'c1' THEN
+            :NEW.preuCost := 10;
+        WHEN 'c2' THEN
+            :NEW.preuCost := 15;
+        ELSE
+            :NEW.preuCost := NULL;
+    END CASE;
+    
+END;
+
+-- Prova
+
+INSERT INTO pertanyA VALUES ('p4','c1');
+INSERT INTO productes VALUES ('p4','Producte 4', NULL);
+SELECT * FROM productes WHERE codi = 'p4';
+
+INSERT INTO pertanyA VALUES ('p5','c2');
+INSERT INTO productes VALUES ('p5','Producte 5', NULL);
+SELECT * FROM productes WHERE codi = 'p5';
+
+INSERT INTO pertanyA VALUES ('p6','c3');
+INSERT INTO productes VALUES ('p6','Producte 6', NULL);
+SELECT * FROM productes WHERE codi = 'p6';
+
 
 -- 10.- Crea un procediment "MostrarPreusMitjans", que utilitze la 
 -- funció "PreuMitja" per a mostrar els preus mitjans de totes les 
