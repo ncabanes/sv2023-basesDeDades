@@ -33,11 +33,11 @@ INSERT INTO pertanyA VALUES ('p2','c2');
 -- productes, així com codi i nom de les categories a què pertanyen, 
 -- en cas que pertanguen a algun.
 
-CREATE VIEW prodCateg AS 
+CREATE OR REPLACE VIEW prodCateg AS 
     SELECT productes.codi as codiproducte, 
         productes.nom as nomProducte, 
         categoriesProd.codi as codiCategoria, 
-        categoriesProd.nom as nomeCategoria 
+        categoriesProd.nom as nomCategoria 
     FROM productes 
         LEFT JOIN pertanyA ON pertanyA.codiProd = productes.codi 
         LEFT JOIN categoriesProd on pertanyA.codiCateg = categoriesProd.codi;
@@ -47,6 +47,27 @@ SELECT * FROM prodCateg;
 -- 2.- Crea una funció "QuantitatProdCategoria", que reba com a paràmetre 
 -- el nom d'un categoria i retorne la quantitat de productes que hi ha 
 -- en eixa categoria, o -1 en cas que la categoria no existisca.
+
+CREATE OR REPLACE FUNCTION QuantitatProdCategoria (v_nomCateg IN VARCHAR2)
+RETURNS NUMBER 
+AS
+    v_quantitat NUMBER;
+BEGIN
+    SELECT COUNT(*) 
+    INTO v_quantitat
+    FROM prodCateg
+    WHERE nomCategoria = v_nomCateg;
+    
+    IF v_quantitat = 0 THEN
+        v_quantitat := -1;
+    END IF;
+    
+    RETURN v_quantitat;
+END;
+
+BEGIN
+    dbms_output.put_line(QuantitatProdCategoria('Categoria 2'));
+END;
 
 
 -- 3.- Crea un procediment "MostrarProdCategoria", que, a partir del nom 
