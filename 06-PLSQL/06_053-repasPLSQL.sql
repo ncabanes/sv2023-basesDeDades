@@ -103,6 +103,30 @@ EXECUTE dbms_output.put_line(QuantitatProdCategoria('Categoria 3'));
 -- codis i noms dels productes que pertanyen a eixa categoria, o el 
 -- missatge "Categoria inexistent", segons corresponga. Usa un bucle FOR.
 
+CREATE OR REPLACE PROCEDURE MostrarProdCategoria (v_nomCateg IN VARCHAR2)
+AS
+    v_quantitat NUMBER;
+BEGIN
+    SELECT COUNT(*) 
+    INTO v_quantitat
+    FROM categoriesProd
+    WHERE nom = v_nomCateg;
+    
+    IF v_quantitat = 0 THEN
+        dbms_output.put_line('Categoria inexistent');
+    END IF;
+    
+    FOR prod IN (SELECT * FROM prodCateg
+        WHERE nomCategoria = v_nomCateg) LOOP
+        
+        dbms_output.put_line(prod.codiproducte 
+            || ' ' || prod.nomProducte);
+        
+    END LOOP;
+END;
+
+EXECUTE MostrarProdCategoria('Categoria 2');
+
 
 -- 4.- Crea un procediment "MostrarProdsRapid", que use "CASE" per a 
 -- mostrar cada producte al costat del nom de la categoria a la qual 
