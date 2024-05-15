@@ -181,6 +181,29 @@ END;
 -- s'esborre un producte, les seues dades es guarden en una taula 
 -- auxiliar, juntament amb la data en què s'ha esborrat.
 
+CREATE TABLE productesEsborrats (
+  codi VARCHAR(6),
+  nom VARCHAR(30),
+  preuCost NUMBER(7,2),
+  dataEsborrament DATE
+);
+
+CREATE OR REPLACE TRIGGER EsborrantProducte
+AFTER DELETE ON productes
+FOR EACH ROW
+BEGIN
+    INSERT INTO productesEsborrats 
+    VALUES(:OLD.codi, :OLD.nom, :OLD.preuCost, SYS_DATE);
+END;
+
+INSERT INTO productes VALUES ('p5','Producte 5', 1);
+
+SELECT * FROM productes;
+
+DELETE FROM productes WHERE codi = 'p5';
+
+SELECT * FROM productesEsborrats;
+
 
 -- 6.- Crea un bloc anònim que mostre el codi de cada producte, el seu 
 -- nom i el seu preu en dòlars, suposant un canvi d'1 Euro = 1.08 
