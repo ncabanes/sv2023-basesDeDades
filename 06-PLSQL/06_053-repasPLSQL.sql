@@ -233,6 +233,42 @@ END;
 -- categoria, o -99 en cas que no hi haja cap article en eixa 
 -- categoria.
 
+CREATE OR REPLACE FUNCTION PreuMitja (v_codCateg VARCHAR) 
+RETURN NUMBER 
+IS
+    v_quantitat NUMBER(5);
+    v_preuMitja NUMBER(7,2);
+
+BEGIN
+    SELECT COUNT(*)
+    INTO v_quantitat
+    FROM categoriesProd c 
+    WHERE c.codi = v_codCateg;
+
+    IF v_quantitat = 0 THEN
+        RETURN -99;
+    END IF;
+    
+    SELECT AVG(preuCost)
+        INTO v_preuMitja
+        FROM productes, pertanyA
+        WHERE productes.codi = codiProd
+        AND codiCateg = v_codCateg;
+
+    RETURN v_preuMitja;
+
+END PreuMitja;
+
+-- Prova, amb categoria que existeix
+
+BEGIN
+    dbms_output.put_line(PreuMitja('c2'));
+END;
+
+-- Prova, amb categoria que no existeix
+
+SELECT PreuMitja('c7') FROM dual;
+
 
 -- 8.- Crea un procediment "MostrarCategoriesIProds", que, sense rebre 
 -- paràmetres, mostre el nom de cada categoria, i, en la línia 
