@@ -48,8 +48,10 @@ SELECT * FROM prodCateg;
 -- el nom d'un categoria i retorne la quantitat de productes que hi ha 
 -- en eixa categoria, o -1 en cas que la categoria no existisca.
 
+-- Versió inicial
+
 CREATE OR REPLACE FUNCTION QuantitatProdCategoria (v_nomCateg IN VARCHAR2)
-RETURNS NUMBER 
+RETURN NUMBER 
 AS
     v_quantitat NUMBER;
 BEGIN
@@ -68,6 +70,32 @@ END;
 BEGIN
     dbms_output.put_line(QuantitatProdCategoria('Categoria 2'));
 END;
+
+-- Versió completa
+
+CREATE OR REPLACE FUNCTION QuantitatProdCategoria (v_nomCateg IN VARCHAR2)
+RETURN NUMBER 
+AS
+    v_quantitat NUMBER;
+BEGIN
+    SELECT COUNT(*) 
+    INTO v_quantitat
+    FROM categoriesProd
+    WHERE nom = v_nomCateg;
+    
+    IF v_quantitat = 0 THEN
+        RETURN -1;
+    END IF;
+    
+    SELECT COUNT(*) 
+    INTO v_quantitat
+    FROM prodCateg
+    WHERE nomCategoria = v_nomCateg;
+    
+    RETURN v_quantitat;
+END;
+
+EXECUTE dbms_output.put_line(QuantitatProdCategoria('Categoria 3'));
 
 
 -- 3.- Crea un procediment "MostrarProdCategoria", que, a partir del nom 
