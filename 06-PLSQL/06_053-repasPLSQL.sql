@@ -193,7 +193,7 @@ AFTER DELETE ON productes
 FOR EACH ROW
 BEGIN
     INSERT INTO productesEsborrats 
-    VALUES(:OLD.codi, :OLD.nom, :OLD.preuCost, SYS_DATE);
+    VALUES(:OLD.codi, :OLD.nom, :OLD.preuCost, SYSDATE);
 END;
 
 INSERT INTO productes VALUES ('p5','Producte 5', 1);
@@ -208,6 +208,24 @@ SELECT * FROM productesEsborrats;
 -- 6.- Crea un bloc anònim que mostre el codi de cada producte, el seu 
 -- nom i el seu preu en dòlars, suposant un canvi d'1 Euro = 1.08 
 -- dòlars. Has d'emprar un bloc WHILE.
+
+DECLARE
+    CURSOR c IS
+        SELECT * FROM productes;
+    v_producte productes%ROWTYPE;
+    v_dolars NUMBER(7,2);
+BEGIN
+    OPEN c;
+    FETCH c INTO v_producte;
+    WHILE c%FOUND LOOP
+        v_dolars := v_producte.preuCost * 1.08;
+        dbms_output.put_line(v_producte.codi 
+            || ' - ' || v_producte.nom
+            || ': ' ||  v_dolars || ' dòlars');
+        FETCH c INTO v_producte;
+    END LOOP;
+    CLOSE c;
+END;
 
 
 -- 7.- Crea una funció "PreuMitja", que reba el codi d'una 
