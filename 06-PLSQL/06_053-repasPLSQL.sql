@@ -276,6 +276,24 @@ SELECT PreuMitja('c7') FROM dual;
 -- categoria, tots ells en la mateixa línia, separats per un espai en 
 -- blanc.
 
+CREATE OR REPLACE PROCEDURE MostrarCategoriesIProds 
+AS
+    v_llistaProd VARCHAR2(5000);
+BEGIN
+    FOR categ IN (SELECT * FROM categoriesProd ORDER BY nom) LOOP
+        v_llistaProd := '';
+        FOR prod IN (SELECT * FROM prodCateg
+            WHERE codiCategoria = categ.codi) LOOP
+            v_llistaProd := v_llistaProd || ' ' || prod.nomProducte;
+        END LOOP;
+        
+        dbms_output.put_line(categ.nom || ' - ' || v_llistaProd);
+    END LOOP;
+END;
+
+BEGIN
+    MostrarCategoriesIProds;
+END;
 
 -- 9.- Crea un trigger anomenat "PreuPerDefecte" que, quan es guarda un 
 -- nou producte, si no s'indica el seu preu, li assigne preu 10 si és de 
