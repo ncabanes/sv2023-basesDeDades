@@ -103,6 +103,7 @@ EXECUTE dbms_output.put_line(QuantitatProdCategoria('Categoria 3'));
 -- codis i noms dels productes que pertanyen a eixa categoria, o el 
 -- missatge "Categoria inexistent", segons corresponga. Usa un bucle FOR.
 
+
 CREATE OR REPLACE PROCEDURE MostrarProdCategoria (v_nomCateg IN VARCHAR2)
 AS
     v_quantitat NUMBER;
@@ -133,6 +134,46 @@ EXECUTE MostrarProdCategoria('Categoria 2');
 -- pertany, sense consultar la taula "categories", mirant només 
 -- "productes" i "pertanyA". Si un producte està en diverses categories, 
 -- apareixeran diverses línies que comencen pel seu nom.
+
+-- Previ: consulta
+
+SELECT 
+    productes.nom as nomProducte, 
+    pertanyA.codiCateg as codiCategoria
+FROM productes 
+    LEFT JOIN pertanyA ON pertanyA.codiProd = productes.codi
+ORDER BY nomProducte;
+
+
+-- Procediment
+
+CREATE OR REPLACE PROCEDURE MostrarProdsRapid 
+AS
+    v_nomCateg categoriesProd.nom % TYPE;
+    CURSOR cursorProd IS 
+        SELECT 
+            productes.nom as nomProducte, 
+            pertanyA.codiCateg as codiCategoria
+        FROM productes 
+            LEFT JOIN pertanyA ON pertanyA.codiProd = productes.codi
+        ORDER BY nomProducte;    
+BEGIN
+    FOR prod IN cursorProd LOOP
+        v_nomCateg := CASE prod.codiCategoria
+            WHEN 'c1' THEN 'Categoria 1'
+            WHEN 'c2' THEN 'Categoria 2'
+            WHEN 'c3' THEN 'Categoria 3'
+            ELSE '(Sense categoria)'
+        END;
+        
+        dbms_output.put_line(prod.nomProducte 
+            || ' - ' || v_nomCateg);
+    END LOOP;
+END;
+
+BEGIN
+    MostrarProdsRapid;
+END;
 
 
 -- 5.- Crea una taula auxiliar "productesEsborrats" (sense clau primària) 
