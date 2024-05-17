@@ -341,6 +341,23 @@ SELECT * FROM productes WHERE codi = 'p6';
 -- funció "PreuMitja" per a mostrar els preus mitjans de totes les 
 -- categories que tenim emmagatzemades.
 
+CREATE OR REPLACE PROCEDURE MostrarPreusMitjans IS
+    CURSOR c IS
+        SELECT codi
+        FROM categoriesProd;
+    
+BEGIN
+    FOR registre IN c LOOP
+        dbms_output.put_line(registre.codi
+            || ': ' || PrecioMedio(registre.codi));
+    END LOOP;
+END MostrarPreusMitjans;
+
+BEGIN
+    MostrarPreusMitjans;
+END;
+
+
 
 -- ==============================================================
 
